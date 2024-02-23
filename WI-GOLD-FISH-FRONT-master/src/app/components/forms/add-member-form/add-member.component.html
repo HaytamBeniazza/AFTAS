@@ -1,0 +1,82 @@
+<p-dialog header="Add Member Form" [(visible)]="visible" [style]="{width: '70vw'}">
+    <div class="mt-5 flex w-full">
+        <div class="w-1/2 p-5">
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Member</label>
+                <p-multiSelect [(ngModel)]="selectedMembers" (onChange)="onChangeSelectedMembers()" [ngClass]="{
+                    'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full': true,
+                    'border-red-500': selectedMembers.length === 0
+                }" [style]="{width: '100%'}" scrollHeight="400px" [options]="members" class="w-full"
+                    optionLabel="name"></p-multiSelect>
+            </div>
+            <button type="submit" (click)="onSubmit()"
+                class="text-white mt-2 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+                [class.bg-teal-700]="selectedMembers.length !==0" [class.bg-gray-300]="selectedMembers.length ===0">
+                Submit
+            </button>
+        </div>
+        <div class="w-1/2 p-5">
+            <form [formGroup]="memberForm" (ngSubmit)="onSubmitAddMember()">
+                <div class="mt-2">
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                    <input type="text" formControlName="name"
+                        class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 "
+                        [class.border-gray-300]="!memberForm.get('numberOfFish')?.invalid"
+                        [class.border-red-500]="memberForm.get('numberOfFish')?.invalid">
+
+                </div>
+                <div class="mt-2">
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Family Name</label>
+                    <input type="text" formControlName="familyName"
+                        class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 "
+                        [class.border-gray-300]="!memberForm.get('numberOfFish')?.invalid"
+                        [class.border-red-500]="memberForm.get('numberOfFish')?.invalid">
+
+                </div>
+                <div class="mt-2">
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Accession Date</label>
+                    <input type="date" formControlName="accessionDate"
+                        class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 "
+                        [class.border-gray-300]="!memberForm.get('numberOfFish')?.invalid"
+                        [class.border-red-500]="memberForm.get('numberOfFish')?.invalid">
+
+                </div>
+                <div class="mt-2">
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nationality</label>
+                    <input type="text" formControlName="nationality"
+                        class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 "
+                        [class.border-gray-300]="!memberForm.get('numberOfFish')?.invalid"
+                        [class.border-red-500]="memberForm.get('numberOfFish')?.invalid">
+
+                </div>
+                <div class="mt-2">
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Indentity Document
+                        Type</label>
+                    <!-- <input type="text" formControlName="indentityDocumentType"
+                        class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 "
+                        [class.border-gray-300]="!memberForm.get('numberOfFish')?.invalid"
+                        [class.border-red-500]="memberForm.get('numberOfFish')?.invalid"> -->
+                    <select formControlName="indentityDocumentType"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 ">
+                        <option *ngFor="let key of getEnumKeys()" value="{{key}}">{{key}}</option>
+                    </select>
+
+                </div>
+                <div class="mt-2">
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Indentity Number</label>
+                    <input type="text" formControlName="indentityNumber"
+                        class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 "
+                        [class.border-gray-300]="!memberForm.get('numberOfFish')?.invalid"
+                        [class.border-red-500]="memberForm.get('numberOfFish')?.invalid">
+
+                </div>
+                <button type="submit"
+                    class="text-white mt-2 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+                    [class.bg-teal-700]="!memberForm.invalid" [class.bg-gray-300]="memberForm.invalid"
+                    [disabled]="memberForm.invalid">
+                    Submit
+                </button>
+            </form>
+        </div>
+    </div>
+</p-dialog>

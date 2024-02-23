@@ -1,0 +1,35 @@
+<div class="flex w-full justify-around">
+    <ul class="flex pl-10 justify-items-start">
+        <li class="p-5">
+            <a routerLink="" class="text-white hover:text-blue-400">Home</a>
+        </li>
+        <li class="p-5">
+            <a routerLink="/competition" class="text-white hover:text-blue-400">Competition</a>
+        </li>
+        <li class="p-5">
+            <a routerLink="" class="text-white hover:text-blue-400">Hunting</a>
+        </li>
+    </ul>
+    <ul class="flex pl-10 justify-items-end">
+        <li class="p-5" *ngIf="!(user |async)?.username">
+            <a routerLink="/login" class="text-white hover:text-blue-400 px-5 py-2 border rounded-md">LOGIN</a>
+        </li>
+        <li class="p-5" *ngIf="!(user |async)?.username">
+            <a routerLink="/signup" class="text-white hover:text-blue-400 px-5 py-2 border rounded-md">SIGNUP</a>
+        </li>
+        <li class="p-5 cursor-pointer" *ngIf="(user |async)?.username">
+            <p class="text-white hover:text-blue-400 px-5 py-2 border rounded-md">
+                {{(user |async)?.username}}</p>
+        </li>
+        <li routerLink="/managemember"  class="p-5 cursor-pointer" *ngIf="(user |async)?.role == 'MANAGER'">
+            <p class="text-white hover:text-blue-400 px-5 py-2 border rounded-md">
+                Manage Members
+            </p>
+        </li>
+        <li class="p-5 cursor-pointer"  *ngIf="(user |async)?.username" (click)="logout()">
+            <p class="text-white hover:text-blue-400 px-5 py-2 border rounded-md">
+                LOGOUT
+                </p>
+        </li>
+    </ul>
+</div>

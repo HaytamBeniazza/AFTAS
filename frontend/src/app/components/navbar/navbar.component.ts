@@ -9,11 +9,15 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  user : Observable<TUser>;
-  constructor(private authService : AuthService){
+  user: Observable<TUser>;
+  mobileMenuOpen: boolean = false;
+
+  constructor(private authService: AuthService) {
     this.user = authService.authenticatedUser;
   }
-  logout(){
+
+  logout() {
     this.authService.logout();
+    this.mobileMenuOpen = false;
   }
 }

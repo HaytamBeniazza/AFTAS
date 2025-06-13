@@ -17,29 +17,31 @@ export class AuthService {
   public url = 'http://localhost:8080/api/v1/auth';
   public authenticatedUser = new BehaviorSubject<TUser>({} as TUser);
   public login(username: string, password: string) {
-    return this.http.post<string>(this.url + '/login', { username, password }).subscribe(
-      (token: any) => {
-        localStorage.setItem('token', token.token);
-        this.getUserByToken();
-      }
-    );
+    return this.http.post<string>(this.url + '/login', { username, password });
   }
-  getUserByToken() {
-    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
-  
+    getUserByToken() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      return; // No token, skip authentication
+    }
+
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+
     return this.http.post<TUser>(this.url + '/user', {}, { headers: headers }).subscribe(
       (user: TUser) => {
         this.authenticatedUser.next(user);
         this.router.navigate(['/']);
       },
       (error) => {
+        console.log('Authentication failed:', error);
         if (error.status === 403 || error.status === 401) {
           localStorage.removeItem('token');
         }
+        // Don't redirect or throw errors - just fail silently for better UX
       }
     );
   }
-  
+
   public logout() {
     localStorage.removeItem('token');
     this.authenticatedUser.next({} as TUser);

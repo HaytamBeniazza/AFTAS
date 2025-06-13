@@ -5,8 +5,7 @@ npm-debug.log*
 README.md
 Dockerfile
 .dockerignore
-src/
-!dist/
+dist/
 *.md
 coverage/
 .nyc_output/

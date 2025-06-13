@@ -8,11 +8,11 @@ WORKDIR /app
 
 # Copy package files and install dependencies (cached layer)
 COPY package*.json ./
-RUN npm ci --only=production
+RUN npm ci
 
 # Copy source code and build application
 COPY . .
-RUN npm run build --prod
+RUN npm run build:prod
 
 # Runtime stage with Nginx
 FROM nginx:1.25-alpine

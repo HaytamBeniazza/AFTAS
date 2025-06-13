@@ -68,7 +68,7 @@ jobs:
     - name: 📈 Upload Coverage to Codecov
       uses: codecov/codecov-action@v3
       with:
-        file: ./aftas-api/target/site/jacoco/jacoco.xml
+        file: ./backend/target/site/jacoco/jacoco.xml
         flags: backend
 
     - name: 🔧 Build Backend
@@ -80,7 +80,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: backend-jar
-        path: aftas-api/target/*.jar
+        path: backend/target/*.jar
 
   # ====================================
   # Frontend Testing & Build
@@ -98,44 +98,44 @@ jobs:
       with:
         node-version: ${{ env.NODE_VERSION }}
         cache: 'npm'
-        cache-dependency-path: WI-GOLD-FISH-FRONT-master/package-lock.json
+        cache-dependency-path: frontend/package-lock.json
 
     - name: 📦 Install Dependencies
       run: |
-        cd WI-GOLD-FISH-FRONT-master
+        cd frontend
         npm ci
 
     - name: 🧪 Run Frontend Tests
       run: |
-        cd WI-GOLD-FISH-FRONT-master
+        cd frontend
         npm run test:ci
 
     - name: 📊 Generate Coverage Report
       run: |
-        cd WI-GOLD-FISH-FRONT-master
+        cd frontend
         npm run test:coverage
 
     - name: 📈 Upload Coverage to Codecov
       uses: codecov/codecov-action@v3
       with:
-        file: ./WI-GOLD-FISH-FRONT-master/coverage/lcov.info
+        file: ./frontend/coverage/lcov.info
         flags: frontend
 
     - name: 🎯 Lint Code
       run: |
-        cd WI-GOLD-FISH-FRONT-master
+        cd frontend
         npm run lint
 
     - name: 🔧 Build Frontend
       run: |
-        cd WI-GOLD-FISH-FRONT-master
-        npm run build --prod
+        cd frontend
+        npm run build:prod
 
     - name: 📦 Upload Frontend Artifact
       uses: actions/upload-artifact@v3
       with:
         name: frontend-dist
-        path: WI-GOLD-FISH-FRONT-master/dist/
+        path: frontend/dist/
 
   # ====================================
   # Security Scanning
@@ -163,7 +163,7 @@ jobs:
         sarif_file: 'trivy-results.sarif'
 
   # ====================================
-  # Docker Build & Push
+  # Docker Build (Only on main branch)
   # ====================================
   docker-build:
     name: 🐳 Docker Build
@@ -178,122 +178,72 @@ jobs:
     - name: 🐳 Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
 
-    - name: 🔐 Login to Docker Hub
-      uses: docker/login-action@v3
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-
     - name: 📦 Download Backend Artifact
       uses: actions/download-artifact@v3
       with:
         name: backend-jar
-        path: aftas-api/target/
+        path: backend/target/
 
     - name: 📦 Download Frontend Artifact
       uses: actions/download-artifact@v3
       with:
         name: frontend-dist
-        path: WI-GOLD-FISH-FRONT-master/dist/
+        path: frontend/dist/
 
-    - name: 🔧 Build and Push Backend Image
+    - name: 🔧 Build Backend Docker Image
       uses: docker/build-push-action@v5
       with:
-        context: ./aftas-api
-        push: true
-        tags: |
-          ${{ secrets.DOCKER_USERNAME }}/aftas-backend:latest
-          ${{ secrets.DOCKER_USERNAME }}/aftas-backend:${{ github.sha }}
+        context: ./backend
+        push: false
+        tags: aftas-backend:latest
         cache-from: type=gha
         cache-to: type=gha,mode=max
 
-    - name: 🔧 Build and Push Frontend Image
+    - name: 🔧 Build Frontend Docker Image
       uses: docker/build-push-action@v5
       with:
-        context: ./WI-GOLD-FISH-FRONT-master
-        push: true
-        tags: |
-          ${{ secrets.DOCKER_USERNAME }}/aftas-frontend:latest
-          ${{ secrets.DOCKER_USERNAME }}/aftas-frontend:${{ github.sha }}
+        context: ./frontend
+        push: false
+        tags: aftas-frontend:latest
         cache-from: type=gha
         cache-to: type=gha,mode=max
 
+    - name: ✅ Docker Build Complete
+      run: |
+        echo "🎉 Docker images built successfully!"
+        echo "Backend image: aftas-backend:latest"
+        echo "Frontend image: aftas-frontend:latest"
+
   # ====================================
-  # Deploy to Staging
+  # Quality Gate
   # ====================================
-  deploy-staging:
-    name: 🚀 Deploy to Staging
+  quality-gate:
+    name: 🎯 Quality Gate
     runs-on: ubuntu-latest
-    needs: [docker-build]
-    if: github.ref == 'refs/heads/main'
-    environment: staging
+    needs: [backend-test, frontend-test, security-scan, docker-build]
+    if: always()
 
     steps:
-    - name: 📥 Checkout Code
-      uses: actions/checkout@v4
-
-    - name: 🚀 Deploy to Staging
+    - name: 📊 Check Quality Gate
       run: |
-        echo "🚀 Deploying to staging environment..."
-        # Add your staging deployment commands here
-        # docker-compose -f docker-compose.staging.yml up -d
+        echo "🔍 Checking quality gate status..."
+        
+        # Check if all required jobs passed
+        if [[ "${{ needs.backend-test.result }}" == "success" && 
+              "${{ needs.frontend-test.result }}" == "success" && 
+              "${{ needs.security-scan.result }}" == "success" ]]; then
+          echo "✅ Quality gate passed!"
+          echo "🎉 All tests and security scans successful"
+        else
+          echo "❌ Quality gate failed!"
+          echo "Backend tests: ${{ needs.backend-test.result }}"
+          echo "Frontend tests: ${{ needs.frontend-test.result }}"
+          echo "Security scan: ${{ needs.security-scan.result }}"
+          exit 1
+        fi
 
-    - name: 🧪 Run Integration Tests
+    - name: 🎉 Success Notification
+      if: success()
       run: |
-        echo "🧪 Running integration tests..."
-        # Add integration test commands here
-
-    - name: 📢 Notify Deployment
-      uses: 8398a7/action-slack@v3
-      with:
-        status: ${{ job.status }}
-        channel: '#deployments'
-        webhook_url: ${{ secrets.SLACK_WEBHOOK }}
-      if: always()
-
-  # ====================================
-  # Deploy to Production
-  # ====================================
-  deploy-production:
-    name: 🌟 Deploy to Production
-    runs-on: ubuntu-latest
-    needs: [deploy-staging]
-    if: github.ref == 'refs/heads/main'
-    environment: production
-
-    steps:
-    - name: 📥 Checkout Code
-      uses: actions/checkout@v4
-
-    - name: 🌟 Deploy to Production
-      run: |
-        echo "🌟 Deploying to production environment..."
-        # Add your production deployment commands here
-
-    - name: 📢 Notify Production Deployment
-      uses: 8398a7/action-slack@v3
-      with:
-        status: ${{ job.status }}
-        channel: '#deployments'
-        webhook_url: ${{ secrets.SLACK_WEBHOOK }}
-      if: always()
-
-  # ====================================
-  # Performance Testing
-  # ====================================
-  performance-test:
-    name: 📊 Performance Tests
-    runs-on: ubuntu-latest
-    needs: [deploy-staging]
-    if: github.ref == 'refs/heads/main'
-
-    steps:
-    - name: 📥 Checkout Code
-      uses: actions/checkout@v4
-
-    - name: 📊 Run Lighthouse CI
-      uses: treosh/lighthouse-ci-action@v10
-      with:
-        configPath: './.lighthouserc.json'
-        uploadArtifacts: true
-        temporaryPublicStorage: true 
+        echo "🚀 AFTAS Pipeline completed successfully!"
+        echo "✅ Ready for deployment" 

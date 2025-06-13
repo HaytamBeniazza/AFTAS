@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: aftas-postgres-dev
+    environment:
+      POSTGRES_DB: aftas
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data_dev:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - aftas-network-dev
+
+  # PgAdmin for database management
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: aftas-pgadmin-dev
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@aftas.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+    networks:
+      - aftas-network-dev
+
+  # Frontend Service (with volume mount and live reload)
+  frontend:
+    image: node:18-alpine
+    container_name: aftas-frontend-dev
+    working_dir: /app
+    volumes:
+      - ./frontend:/app
+      - node_modules_cache_dev:/app/node_modules
+    ports:
+      - "4200:4200"
+    environment:
+      NODE_ENV: development
+    command: ["sh", "-c", "npm ci && npm run start -- --host 0.0.0.0 --port 4200 --poll 2000"]
+    networks:
+      - aftas-network-dev
+
+volumes:
+  postgres_data_dev:
+    driver: local
+  node_modules_cache_dev:
+    driver: local
+
+networks:
+  aftas-network-dev:
+    driver: bridge 

@@ -53,7 +53,7 @@ jobs:
 
     - name: 🧪 Run Backend Tests
       run: |
-        cd aftas-api
+        cd backend
         ./mvnw clean test
       env:
         SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/aftas_test
@@ -62,7 +62,7 @@ jobs:
 
     - name: 📊 Generate Test Coverage Report
       run: |
-        cd aftas-api
+        cd backend
         ./mvnw jacoco:report
 
     - name: 📈 Upload Coverage to Codecov
@@ -73,7 +73,7 @@ jobs:
 
     - name: 🔧 Build Backend
       run: |
-        cd aftas-api
+        cd backend
         ./mvnw clean package -DskipTests
 
     - name: 📦 Upload Backend Artifact

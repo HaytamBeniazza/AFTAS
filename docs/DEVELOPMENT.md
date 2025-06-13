@@ -26,7 +26,7 @@
 
 ```
 aftas/
-├── aftas-api/                  # Spring Boot Backend
+├── backend/                    # Spring Boot Backend
 │   ├── src/main/java/com/WI/WIGOLDFISH/
 │   │   ├── controllers/        # REST Controllers
 │   │   ├── services/          # Business Logic
@@ -35,7 +35,7 @@ aftas/
 │   │   ├── configs/           # Configuration Classes
 │   │   └── exceptions/        # Custom Exceptions
 │   └── pom.xml                # Maven Dependencies
-├── WI-GOLD-FISH-FRONT-master/ # Angular Frontend
+├── frontend/                  # Angular Frontend
 │   ├── src/app/
 │   │   ├── components/        # Reusable Components
 │   │   ├── pages/             # Page Components
@@ -65,7 +65,7 @@ docker-compose up -d
 
 #### **Backend Setup**
 ```bash
-cd aftas-api
+cd backend
 cp src/main/resources/application.properties.example src/main/resources/application.properties
 # Edit application.properties with your database credentials
 ./mvnw spring-boot:run
@@ -73,7 +73,7 @@ cp src/main/resources/application.properties.example src/main/resources/applicat
 
 #### **Frontend Setup**
 ```bash
-cd WI-GOLD-FISH-FRONT-master
+cd frontend
 npm install
 npm run start
 ```
@@ -82,14 +82,14 @@ npm run start
 
 ### **Backend Testing**
 ```bash
-cd aftas-api
+cd backend
 ./mvnw test                    # Run tests
 ./mvnw jacoco:report          # Generate coverage
 ```
 
 ### **Frontend Testing**
 ```bash
-cd WI-GOLD-FISH-FRONT-master
+cd frontend
 npm run test                  # Unit tests
 npm run test:coverage        # Coverage report
 npm run e2e                  # E2E tests
@@ -114,8 +114,8 @@ npm run e2e                  # E2E tests
 docker-compose -f docker-compose.prod.yml up -d
 
 # Or manual deployment
-cd aftas-api && ./mvnw clean package
-cd ../WI-GOLD-FISH-FRONT-master && npm run build --prod
+cd backend && ./mvnw clean package
+cd ../frontend && npm run build --prod
 ```
 
 ## 🤝 **Contributing**

@@ -25,7 +25,7 @@ services:
   # Spring Boot Backend API
   backend:
     build:
-      context: ./aftas-api
+      context: ./backend
       dockerfile: Dockerfile
     container_name: aftas-backend
     environment:
@@ -50,7 +50,7 @@ services:
   # Angular Frontend
   frontend:
     build:
-      context: ./WI-GOLD-FISH-FRONT-master
+      context: ./frontend
       dockerfile: Dockerfile
     container_name: aftas-frontend
     ports:

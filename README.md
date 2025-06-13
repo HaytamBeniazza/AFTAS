@@ -21,6 +21,33 @@ AFTAS is a comprehensive full-stack web application designed to manage fishing c
 - **Admin Panel**: Full administrative control over competitions and participants
 - **Mobile Responsive**: Optimized for both desktop and mobile devices
 
+## 📁 **Project Structure**
+
+```
+📦 aftas/
+├── 🔧 backend/                 # Spring Boot API
+│   ├── src/main/java/         # Java source code
+│   ├── src/main/resources/    # Configuration files
+│   ├── pom.xml               # Maven dependencies
+│   └── Dockerfile            # Backend container
+├── 🎨 frontend/              # Angular Application
+│   ├── src/app/              # Angular source code
+│   ├── package.json          # Node dependencies
+│   ├── Dockerfile            # Frontend container
+│   └── nginx.conf            # Web server config
+├── 📚 docs/                  # Documentation
+│   └── DEVELOPMENT.md        # Development guide
+├── 🚀 deployment/            # Deployment files
+│   └── docker-compose.yml    # Container orchestration
+├── 🔧 scripts/               # Utility scripts
+│   ├── setup.sh             # Linux/Mac setup
+│   └── setup.ps1            # Windows setup
+├── ⚙️ .github/workflows/     # CI/CD pipelines
+│   └── ci-cd.yml            # GitHub Actions
+├── 📄 README.md             # This file
+└── 📜 LICENSE               # MIT license
+```
+
 ## 🏗️ **Architecture Overview**
 
 ### **Backend (Spring Boot)**
@@ -45,32 +72,32 @@ AFTAS is a comprehensive full-stack web application designed to manage fishing c
 - PostgreSQL 12+
 - Maven 3.8+
 
-### **Backend Setup**
+### **Quick Setup**
 ```bash
-# Navigate to backend directory
-cd aftas-api
+# Easy setup with scripts
+./scripts/setup.sh      # Linux/Mac
+./scripts/setup.ps1     # Windows
 
-# Configure database in application.properties
-# Copy application.properties.example to application.properties
-# Update database credentials
+# Or use Docker
+cd deployment && docker-compose up -d
+```
 
-# Run the application
+### **Manual Setup**
+
+#### **Backend Setup**
+```bash
+cd backend
+cp src/main/resources/application.properties.example src/main/resources/application.properties
+# Edit application.properties with your database credentials
 ./mvnw spring-boot:run
-
 # API will be available at http://localhost:8080
 ```
 
-### **Frontend Setup**
+#### **Frontend Setup**
 ```bash
-# Navigate to frontend directory
-cd WI-GOLD-FISH-FRONT-master
-
-# Install dependencies
+cd frontend
 npm install
-
-# Start development server
 npm run start
-
 # Application will be available at http://localhost:4200
 ```
 
@@ -94,14 +121,14 @@ The application uses a PostgreSQL database with the following main entities:
 
 ### **Backend Testing**
 ```bash
-cd aftas-api
+cd backend
 ./mvnw test
 ./mvnw jacoco:report  # Generate coverage report
 ```
 
 ### **Frontend Testing**
 ```bash
-cd WI-GOLD-FISH-FRONT-master
+cd frontend
 npm run test
 npm run test:coverage
 ```

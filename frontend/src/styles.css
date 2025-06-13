@@ -4,87 +4,59 @@
 @import "primeicons/primeicons.css";
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
 
-/* Design System Variables */
+/* ========================================
+   AFTAS Ocean Theme Design System
+   Fishing Competition Website - Morocco
+======================================== */
+
 :root {
-  /* Primary Colors - Ocean Blue Theme */
-  --primary-50: #eff6ff;
-  --primary-100: #dbeafe;
-  --primary-200: #bfdbfe;
-  --primary-300: #93c5fd;
-  --primary-400: #60a5fa;
-  --primary-500: #3b82f6;
-  --primary-600: #2563eb;
-  --primary-700: #1d4ed8;
-  --primary-800: #1e40af;
-  --primary-900: #1e3a8a;
+  /* Ocean Color Palette */
+  --ocean-deep: #0f172a;           /* Deep ocean blue */
+  --ocean-night: #1e293b;         /* Night ocean */
+  --ocean-dark: #334155;          /* Dark water */
+  --ocean-blue: #0ea5e9;          /* Ocean blue */
+  --ocean-light: #38bdf8;         /* Light ocean */
+  --ocean-foam: #7dd3fc;          /* Ocean foam */
+  --ocean-mist: #e0f2fe;          /* Ocean mist */
 
-  /* Secondary Colors - Teal Accent */
-  --secondary-50: #f0fdfa;
-  --secondary-100: #ccfbf1;
-  --secondary-200: #99f6e4;
-  --secondary-300: #5eead4;
-  --secondary-400: #2dd4bf;
-  --secondary-500: #14b8a6;
-  --secondary-600: #0d9488;
-  --secondary-700: #0f766e;
-  --secondary-800: #115e59;
-  --secondary-900: #134e4a;
+  /* Coral & Fish Colors */
+  --coral-orange: #fb7185;        /* Coral pink */
+  --coral-red: #f43f5e;          /* Deep coral */
+  --fish-gold: #fbbf24;          /* Golden fish */
+  --fish-yellow: #fde047;        /* Bright fish */
+  --seaweed-green: #10b981;      /* Seaweed green */
+  --seaweed-dark: #059669;       /* Dark seaweed */
 
-  /* Neutral Colors */
-  --gray-50: #f8fafc;
-  --gray-100: #f1f5f9;
-  --gray-200: #e2e8f0;
-  --gray-300: #cbd5e1;
-  --gray-400: #94a3b8;
-  --gray-500: #64748b;
-  --gray-600: #475569;
-  --gray-700: #334155;
-  --gray-800: #1e293b;
-  --gray-900: #0f172a;
+  /* Sand & Shore Colors */
+  --sand-light: #fef3c7;         /* Light sand */
+  --sand-warm: #fde68a;          /* Warm sand */
+  --sand-golden: #f59e0b;        /* Golden sand */
+  --shore-gray: #d1d5db;         /* Shore gray */
 
-  /* Success/Error/Warning */
-  --success: #10b981;
-  --error: #ef4444;
-  --warning: #f59e0b;
-
-  /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-
-  /* Border Radius */
-  --radius-sm: 0.375rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
-  --radius-xl: 1rem;
-
-  /* Spacing */
-  --space-xs: 0.25rem;
-  --space-sm: 0.5rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-2xl: 3rem;
+  /* Wave Gradients */
+  --wave-gradient: linear-gradient(135deg, var(--ocean-deep) 0%, var(--ocean-blue) 50%, var(--ocean-light) 100%);
+  --foam-gradient: linear-gradient(135deg, var(--ocean-light) 0%, var(--ocean-foam) 50%, var(--ocean-mist) 100%);
+  --sunset-gradient: linear-gradient(135deg, var(--coral-orange) 0%, var(--fish-gold) 50%, var(--fish-yellow) 100%);
 
   /* Typography */
-  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-size-xs: 0.75rem;
-  --font-size-sm: 0.875rem;
-  --font-size-base: 1rem;
-  --font-size-lg: 1.125rem;
-  --font-size-xl: 1.25rem;
-  --font-size-2xl: 1.5rem;
-  --font-size-3xl: 1.875rem;
-  --font-size-4xl: 2.25rem;
-  --font-size-5xl: 3rem;
+  --font-heading: 'Merriweather', Georgia, serif;
+  --font-body: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Shadows & Effects */
+  --shadow-wave: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+  --shadow-foam: 0 10px 25px rgba(14, 165, 233, 0.15);
+  --shadow-deep: 0 35px 60px -12px rgba(15, 23, 42, 0.4);
+
+  /* Animations */
+  --wave-duration: 3s;
+  --foam-duration: 2s;
+  --fish-duration: 4s;
 }
 
 /* Base Styles */
 * {
-  font-family: var(--font-family);
   box-sizing: border-box;
 }
 
@@ -95,201 +67,463 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, var(--primary-900) 0%, var(--primary-800) 100%);
-  color: var(--gray-800);
-  line-height: 1.6;
-  font-size: var(--font-size-base);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--ocean-deep);
+  line-height: 1.7;
+  font-size: 16px;
   overflow-x: hidden;
+
+  /* Ocean Background */
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  position: relative;
 }
 
-/* Custom Component Classes */
+/* Ocean Wave Background Animation */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 20% 50%, rgba(14, 165, 233, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(125, 211, 252, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(56, 189, 248, 0.1) 0%, transparent 50%);
+  animation: oceanWaves var(--wave-duration) ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ocean-deep);
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 900;
+  background: var(--sunset-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+h2 {
+  font-size: 2rem;
+  color: var(--ocean-dark);
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: var(--ocean-blue);
+}
+
+/* Component Classes */
 @layer components {
-  /* Button Components */
-  .btn-primary {
-    @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
-    background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-700) 100%);
-    box-shadow: var(--shadow-md);
+  /* AFTAS Branding */
+  .aftas-logo {
+    font-family: var(--font-heading);
+    font-weight: 900;
+    font-size: 1.8rem;
+    background: var(--sunset-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-decoration: none;
   }
 
-  .btn-primary:hover {
-    background: linear-gradient(135deg, var(--primary-700) 0%, var(--primary-800) 100%);
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-lg);
+  .aftas-tagline {
+    font-family: var(--font-body);
+    font-style: italic;
+    color: var(--ocean-foam);
+    font-size: 0.9rem;
   }
 
-  .btn-secondary {
-    @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500;
-    background: linear-gradient(135deg, var(--secondary-600) 0%, var(--secondary-700) 100%);
-    box-shadow: var(--shadow-md);
+  /* Ocean Buttons */
+  .btn-ocean {
+    @apply inline-flex items-center justify-center px-6 py-3 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4;
+    background: var(--wave-gradient);
+    box-shadow: var(--shadow-foam);
+    border: 1px solid rgba(125, 211, 252, 0.3);
   }
 
-  .btn-secondary:hover {
-    background: linear-gradient(135deg, var(--secondary-700) 0%, var(--secondary-800) 100%);
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-lg);
+  .btn-ocean:hover {
+    box-shadow: var(--shadow-wave);
+    transform: translateY(-2px) scale(1.02);
   }
 
-  .btn-outline {
-    @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium border-2 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
-    color: var(--primary-600);
-    border-color: var(--primary-600);
-    background: transparent;
+  .btn-coral {
+    @apply inline-flex items-center justify-center px-6 py-3 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105;
+    background: linear-gradient(135deg, var(--coral-red) 0%, var(--coral-orange) 100%);
+    box-shadow: 0 10px 25px rgba(244, 63, 94, 0.25);
   }
 
-  .btn-outline:hover {
-    background: var(--primary-600);
-    color: white;
-    transform: translateY(-1px);
+  .btn-coral:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(244, 63, 94, 0.35);
   }
 
-  /* Card Components */
-  .card {
-    @apply rounded-xl overflow-hidden transition-all duration-300;
+  .btn-seaweed {
+    @apply inline-flex items-center justify-center px-6 py-3 text-white font-semibold rounded-xl transition-all duration-300;
+    background: linear-gradient(135deg, var(--seaweed-dark) 0%, var(--seaweed-green) 100%);
+    box-shadow: 0 10px 25px rgba(5, 150, 105, 0.25);
+  }
+
+  /* Ocean Cards */
+  .ocean-card {
+    @apply rounded-2xl p-6 transition-all duration-300 transform hover:scale-105;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(125, 211, 252, 0.2);
+    box-shadow: var(--shadow-foam);
+  }
+
+  .ocean-card:hover {
     background: rgba(255, 255, 255, 0.95);
+    box-shadow: var(--shadow-wave);
+    transform: translateY(-5px) scale(1.02);
+  }
+
+  .deep-ocean-card {
+    @apply rounded-2xl p-6 text-white;
+    background: linear-gradient(135deg, var(--ocean-dark) 0%, var(--ocean-night) 100%);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    box-shadow: var(--shadow-deep);
+  }
+
+  /* Navigation */
+  .ocean-navbar {
+    @apply fixed top-0 left-0 right-0 z-50 transition-all duration-500;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(125, 211, 252, 0.2);
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.15);
+  }
+
+  .nav-link-ocean {
+    @apply px-4 py-2 text-white font-medium transition-all duration-300 rounded-lg relative overflow-hidden;
+    position: relative;
+  }
+
+  .nav-link-ocean::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--foam-gradient);
+    transition: left 0.3s ease;
+    z-index: -1;
+  }
+
+  .nav-link-ocean:hover::before {
+    left: 0;
+  }
+
+  .nav-link-ocean:hover {
+    color: var(--ocean-deep);
+    transform: translateY(-1px);
+  }
+
+  /* Forms */
+  .ocean-input {
+    @apply w-full px-4 py-3 rounded-xl border-2 transition-all duration-300 focus:outline-none;
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(125, 211, 252, 0.3);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: var(--shadow-lg);
   }
 
-  .card:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-xl);
+  .ocean-input:focus {
+    border-color: var(--ocean-blue);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+    transform: translateY(-1px);
   }
 
-  .card-gradient {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+  .ocean-label {
+    @apply block text-sm font-semibold mb-2;
+    color: var(--ocean-dark);
+    font-family: var(--font-body);
   }
 
-  /* Form Components */
-  .form-input {
-    @apply w-full px-4 py-3 text-gray-900 bg-white border border-gray-300 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
-    box-shadow: var(--shadow-sm);
+  /* Competition Elements */
+  .competition-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold;
+    background: var(--sunset-gradient);
+    color: white;
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25);
   }
 
-  .form-input:focus {
-    box-shadow: var(--shadow-md);
+  .fish-icon {
+    @apply inline-block transform transition-transform duration-300;
+    color: var(--fish-gold);
   }
 
-  .form-label {
-    @apply block text-sm font-medium text-gray-700 mb-2;
-  }
-
-  /* Navigation Components */
-  .navbar {
-    @apply fixed top-0 left-0 right-0 z-50 transition-all duration-300;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  }
-
-  .nav-link {
-    @apply px-4 py-2 text-white font-medium transition-all duration-200 rounded-lg hover:bg-white hover:bg-opacity-20;
+  .fish-icon:hover {
+    transform: scale(1.1) rotate(10deg);
   }
 
   /* Utility Classes */
-  .glass {
+  .ocean-glass {
     background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(125, 211, 252, 0.2);
   }
 
-  .gradient-text {
-    background: linear-gradient(135deg, var(--primary-600) 0%, var(--secondary-600) 100%);
+  .wave-text {
+    background: var(--wave-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  .floating {
-    @apply fixed bottom-6 right-6 z-50;
+  .coral-text {
+    background: linear-gradient(135deg, var(--coral-red) 0%, var(--coral-orange) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .floating-animation {
     animation: float 3s ease-in-out infinite;
   }
 
-  /* Loading States */
-  .skeleton {
-    @apply animate-pulse bg-gray-300 rounded;
-  }
-
-  .spinner {
-    @apply inline-block w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin;
+  .wave-animation {
+    animation: wave 2s ease-in-out infinite;
   }
 }
 
 /* Animations */
+@keyframes oceanWaves {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  100% {
+    transform: translateX(-10px) translateY(-5px);
+  }
+}
+
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes wave {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(5deg);
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
 }
 
-@keyframes slideIn {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(0); }
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
 }
 
-/* Animation Utilities */
-.animate-fade-in {
-  animation: fadeIn 0.6s ease-out;
+/* Bubble Animation */
+@keyframes bubble-float {
+  0% {
+    transform: translateY(100vh) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) scale(1);
+    opacity: 0;
+  }
 }
 
-.animate-slide-in {
-  animation: slideIn 0.4s ease-out;
+/* Sea Creature Animation */
+@keyframes sea-creature-float {
+  0% {
+    transform: translateY(100vh) translateX(0px) rotate(var(--rotation, 0deg));
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  25% {
+    transform: translateY(75vh) translateX(10px) rotate(calc(var(--rotation, 0deg) + 5deg));
+  }
+  50% {
+    transform: translateY(50vh) translateX(-5px) rotate(calc(var(--rotation, 0deg) - 3deg));
+  }
+  75% {
+    transform: translateY(25vh) translateX(8px) rotate(calc(var(--rotation, 0deg) + 2deg));
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-10vh) translateX(0px) rotate(var(--rotation, 0deg));
+    opacity: 0;
+  }
 }
 
-/* PrimeNG Overrides */
+/* Sea Creature Hover Effects */
+.sea-creature:hover {
+  animation-play-state: paused;
+  transform: scale(1.1) !important;
+  z-index: 10;
+}
+
+/* Sea Creature Specific Styles */
+.sea-creature img {
+  transition: all 0.3s ease;
+  will-change: transform;
+}
+
+.sea-creature[title*="Catfish"] img {
+  filter: drop-shadow(0 4px 8px rgba(59, 130, 246, 0.2));
+}
+
+.sea-creature[title*="Crab"] img {
+  filter: drop-shadow(0 4px 8px rgba(251, 113, 133, 0.2));
+}
+
+.sea-creature[title*="Squid"] img {
+  filter: drop-shadow(0 4px 8px rgba(236, 72, 153, 0.2));
+}
+
+.sea-creature[title*="Koi"] img {
+  filter: drop-shadow(0 4px 8px rgba(14, 165, 233, 0.2));
+}
+
+/* PrimeNG Overrides with Ocean Theme */
 .p-dialog .p-dialog-header {
-  background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-700) 100%);
+  background: var(--deep-ocean-card);
   color: white;
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  border-bottom: 1px solid rgba(125, 211, 252, 0.2);
 }
 
 .p-dialog .p-dialog-content {
   background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px);
 }
 
 .p-button {
-  @apply btn-primary;
+  background: var(--wave-gradient) !important;
+  border: 1px solid rgba(125, 211, 252, 0.3) !important;
+  font-family: var(--font-body) !important;
+  font-weight: 600 !important;
 }
 
 .p-inputtext {
-  @apply form-input;
+  @apply ocean-input;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .navbar {
-    @apply px-4;
+  h1 {
+    font-size: 2rem;
   }
 
-  .card {
-    @apply mx-4;
+  h2 {
+    font-size: 1.5rem;
   }
 
-  .btn-primary, .btn-secondary, .btn-outline {
-    @apply w-full justify-center;
+  .ocean-card {
+    @apply p-4;
+    margin: 0.5rem;
+  }
+
+  .btn-ocean, .btn-coral, .btn-seaweed {
+    @apply px-4 py-2 text-sm;
   }
 }
 
-/* Dark Mode Support */
-@media (prefers-color-scheme: dark) {
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  .aftas-logo {
+    font-size: 1.5rem;
+  }
+
   body {
-    background: linear-gradient(135deg, var(--gray-900) 0%, var(--gray-800) 100%);
-    color: var(--gray-100);
+    font-size: 14px;
   }
+}
 
-  .card {
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
+/* Ocean-themed enhancements for AFTAS */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
 
-  .form-input {
-    @apply bg-gray-800 text-white border-gray-600;
-  }
+/* Subtle ocean animations */
+@keyframes gentle-wave {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-2px) rotate(1deg); }
+}
+
+.ocean-float {
+  animation: gentle-wave 6s ease-in-out infinite;
+}
+
+/* Custom scrollbar with ocean theme */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #0ea5e9, #06b6d4);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #0284c7, #0891b2);
+}
+
+/* Subtle focus enhancements */
+input:focus, select:focus, textarea:focus {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Button hover enhancements */
+button:hover {
+  transform: translateY(-1px);
+  transition: all 0.2s ease;
+}
+
+/* Card hover effects */
+.hover\:shadow-lg:hover {
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+/* Gradient text selection */
+::selection {
+  background: rgba(59, 130, 246, 0.2);
+  color: #1e293b;
 }

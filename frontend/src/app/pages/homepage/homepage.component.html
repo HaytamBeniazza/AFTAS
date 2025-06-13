@@ -1,97 +1,181 @@
-<!-- Modern Homepage -->
-<div class="min-h-screen flex items-center justify-center px-4">
-  <div class="max-w-4xl mx-auto text-center animate-fade-in">
+<!-- Award-Winning Minimal Homepage - Ocean Touch -->
+<div class="min-h-screen bg-white">
 
-    <!-- Hero Section -->
-    <div class="mb-12">
-      <!-- Main Title -->
-      <h1 class="text-6xl md:text-8xl font-bold mb-6">
-        <span class="gradient-text">AFTAS</span>
+  <!-- Hero Section -->
+  <section class="pt-24 pb-16 px-6 relative overflow-hidden">
+    <!-- Subtle Ocean Background -->
+    <div class="absolute inset-0 bg-gradient-to-b from-blue-50/30 to-white"></div>
+    <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-100/20 to-cyan-100/20 rounded-full blur-3xl"></div>
+
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <div class="flex items-center justify-center mb-4">
+        <i class="pi pi-star-fill text-blue-600 text-2xl mr-2"></i>
+        <span class="text-blue-600 font-medium text-sm">🇲🇦 Morocco's Premier Fishing Platform</span>
+        <i class="pi pi-star-fill text-blue-600 text-2xl ml-2"></i>
+      </div>
+
+      <h1 class="text-4xl md:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
+        Cast Your Line in<br>
+        <span class="text-transparent bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text">Morocco's Waters</span>
       </h1>
-
-      <!-- Subtitle -->
-      <p class="text-xl md:text-2xl text-white mb-8 max-w-2xl mx-auto leading-relaxed">
-        Professional Fishing Competition Management Platform
+      <p class="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+        Join elite fishing tournaments across Morocco's pristine waters. 🎣
+        Connect with passionate anglers and compete for excellence.
       </p>
 
-      <!-- Description -->
-      <p class="text-lg text-blue-200 mb-12 max-w-3xl mx-auto">
-        Organize, manage, and track fishing competitions with our comprehensive platform.
-        From participant registration to real-time scoring and leaderboards.
-      </p>
-    </div>
-
-    <!-- Feature Cards -->
-    <div class="grid md:grid-cols-3 gap-8 mb-12">
-      <div class="card p-6 text-center">
-        <div class="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full mx-auto mb-4">
-          <i class="pi pi-trophy text-white text-2xl"></i>
-        </div>
-        <h3 class="text-xl font-semibold text-gray-800 mb-2">Competitions</h3>
-        <p class="text-gray-600">Create and manage fishing competitions with ease</p>
-      </div>
-
-      <div class="card p-6 text-center">
-        <div class="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-teal-400 to-teal-600 rounded-full mx-auto mb-4">
-          <i class="pi pi-users text-white text-2xl"></i>
-        </div>
-        <h3 class="text-xl font-semibold text-gray-800 mb-2">Members</h3>
-        <p class="text-gray-600">Manage participants and track their performance</p>
-      </div>
-
-      <div class="card p-6 text-center">
-        <div class="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-indigo-400 to-indigo-600 rounded-full mx-auto mb-4">
-          <i class="pi pi-chart-line text-white text-2xl"></i>
-        </div>
-        <h3 class="text-xl font-semibold text-gray-800 mb-2">Analytics</h3>
-        <p class="text-gray-600">Real-time scoring and detailed leaderboards</p>
-      </div>
-    </div>
-
-    <!-- Call to Action -->
-    <div class="space-y-4 md:space-y-0 md:space-x-6 md:flex md:justify-center" *ngIf="!(user | async)?.username">
-      <a routerLink="/signup" class="btn-primary px-8 py-4 text-lg">
-        <i class="pi pi-user-plus mr-3"></i>
-        Get Started
-      </a>
-      <a routerLink="/login" class="btn-outline text-white border-white hover:bg-white hover:text-blue-900 px-8 py-4 text-lg">
-        <i class="pi pi-sign-in mr-3"></i>
-        Login
-      </a>
-    </div>
-
-    <!-- Welcome Back Message for Authenticated Users -->
-    <div class="space-y-6" *ngIf="(user | async)?.username">
-      <div class="card p-8">
-        <h2 class="text-3xl font-bold text-gray-800 mb-4">
-          Welcome back, {{(user | async)?.username}}!
-        </h2>
-        <p class="text-gray-600 mb-6">Ready to participate in fishing competitions?</p>
-        <a routerLink="/competition" class="btn-primary px-8 py-4 text-lg">
-          <i class="pi pi-calendar mr-3"></i>
-          View Competitions
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-3 justify-center items-center" *ngIf="!(user | async)?.username">
+        <a routerLink="/signup"
+           class="px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white text-sm font-medium rounded-md hover:from-blue-700 hover:to-cyan-700 transition-colors shadow-lg shadow-blue-500/25">
+          🌊 Join AFTAS
+        </a>
+        <a routerLink="/login"
+           class="px-6 py-3 text-blue-600 text-sm font-medium hover:text-blue-700 transition-colors border border-blue-200 rounded-md hover:bg-blue-50">
+          Sign In
         </a>
       </div>
-    </div>
 
-    <!-- Statistics Section -->
-    <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
-      <div class="text-center">
-        <div class="text-3xl font-bold text-white mb-2">100+</div>
-        <div class="text-blue-200">Competitions</div>
-      </div>
-      <div class="text-center">
-        <div class="text-3xl font-bold text-white mb-2">500+</div>
-        <div class="text-blue-200">Members</div>
-      </div>
-      <div class="text-center">
-        <div class="text-3xl font-bold text-white mb-2">1000+</div>
-        <div class="text-blue-200">Fish Caught</div>
-      </div>
-      <div class="text-center">
-        <div class="text-3xl font-bold text-white mb-2">50+</div>
-        <div class="text-blue-200">Locations</div>
+      <!-- Welcome Back Message -->
+      <div class="max-w-xl mx-auto" *ngIf="(user | async)?.username">
+        <div class="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-6 border border-blue-100">
+          <div class="flex items-center justify-center mb-3">
+            <i class="pi pi-star-fill text-blue-600 mr-2"></i>
+            <h2 class="text-xl font-bold text-slate-900">
+              Welcome back, {{(user | async)?.username}}! 🎣
+            </h2>
+          </div>
+          <p class="text-slate-600 mb-5">Ready for your next fishing adventure?</p>
+          <div class="flex flex-col sm:flex-row gap-2 justify-center">
+            <a routerLink="/competition"
+               class="px-5 py-2.5 bg-gradient-to-r from-blue-600 to-cyan-600 text-white text-sm font-medium rounded-md hover:from-blue-700 hover:to-cyan-700 transition-colors">
+              🏆 View Tournaments
+            </a>
+            <a routerLink="/fish"
+               class="px-5 py-2.5 text-blue-600 text-sm font-medium hover:text-blue-700 transition-colors border border-blue-200 rounded-md hover:bg-blue-50"
+               *ngIf="(user | async)?.role !== 'NONE'">
+              🐟 Fish Species
+            </a>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-16 px-6 bg-gradient-to-b from-white to-blue-50/30">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-3">
+          Everything you need for fishing excellence
+        </h2>
+        <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+          Professional tournament management, angler community, and comprehensive tracking.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Tournament Management -->
+        <div class="text-center p-6 bg-white rounded-xl border border-blue-100 hover:shadow-lg hover:shadow-blue-500/10 transition-all">
+          <div class="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <i class="pi pi-trophy text-white text-lg"></i>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 mb-3">🏆 Tournaments</h3>
+          <p class="text-slate-600 leading-relaxed text-sm">
+            Professional fishing competitions across Morocco's pristine waters.
+            Complete management from registration to results.
+          </p>
+        </div>
+
+        <!-- Angler Community -->
+        <div class="text-center p-6 bg-white rounded-xl border border-blue-100 hover:shadow-lg hover:shadow-blue-500/10 transition-all">
+          <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <i class="pi pi-users text-white text-lg"></i>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 mb-3">🤝 Community</h3>
+          <p class="text-slate-600 leading-relaxed text-sm">
+            Connect with passionate fishing enthusiasts. Track achievements
+            and build your reputation among Morocco's finest anglers.
+          </p>
+        </div>
+
+        <!-- Live Tracking -->
+        <div class="text-center p-6 bg-white rounded-xl border border-blue-100 hover:shadow-lg hover:shadow-blue-500/10 transition-all">
+          <div class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <i class="pi pi-chart-line text-white text-lg"></i>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 mb-3">📊 Live Results</h3>
+          <p class="text-slate-600 leading-relaxed text-sm">
+            Real-time competition tracking with detailed leaderboards.
+            Follow the excitement as tournaments unfold across Morocco.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Statistics Section -->
+  <section class="py-16 px-6 bg-white">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-3">
+          Trusted by Morocco's fishing community 🇲🇦
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="text-center p-4 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg border border-blue-100">
+          <div class="text-3xl font-bold text-blue-600 mb-1">150+</div>
+          <div class="text-slate-600 text-sm">🏆 Active Tournaments</div>
+        </div>
+        <div class="text-center p-4 bg-gradient-to-br from-emerald-50 to-teal-50 rounded-lg border border-emerald-100">
+          <div class="text-3xl font-bold text-emerald-600 mb-1">2,500+</div>
+          <div class="text-slate-600 text-sm">🎣 Registered Anglers</div>
+        </div>
+        <div class="text-center p-4 bg-gradient-to-br from-amber-50 to-orange-50 rounded-lg border border-amber-100">
+          <div class="text-3xl font-bold text-amber-600 mb-1">15,000+</div>
+          <div class="text-slate-600 text-sm">🐟 Fish Caught</div>
+        </div>
+        <div class="text-center p-4 bg-gradient-to-br from-cyan-50 to-blue-50 rounded-lg border border-cyan-100">
+          <div class="text-3xl font-bold text-cyan-600 mb-1">25+</div>
+          <div class="text-slate-600 text-sm">🌊 Fishing Locations</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Morocco Waters Section -->
+  <section class="py-16 px-6 bg-gradient-to-b from-blue-50/30 to-cyan-50/30">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-3">
+        Discover Morocco's Waters 🌊
+      </h2>
+      <p class="text-lg text-slate-600 mb-10">
+        From the Atlantic coast to mountain lakes, explore the best fishing locations in Morocco.
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="p-5 bg-white rounded-xl border border-blue-100 hover:shadow-lg hover:shadow-blue-500/10 transition-all">
+          <div class="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center mx-auto mb-3">
+            <i class="pi pi-sun text-white text-sm"></i>
+          </div>
+          <h3 class="text-base font-bold text-slate-900 mb-2">🏖️ Atlantic Coast</h3>
+          <p class="text-slate-600 text-sm">World-class deep-sea fishing experiences</p>
+        </div>
+        <div class="p-5 bg-white rounded-xl border border-blue-100 hover:shadow-lg hover:shadow-blue-500/10 transition-all">
+          <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center mx-auto mb-3">
+            <i class="pi pi-globe text-white text-sm"></i>
+          </div>
+          <h3 class="text-base font-bold text-slate-900 mb-2">🏔️ Mountain Lakes</h3>
+          <p class="text-slate-600 text-sm">Pristine freshwater fishing adventures</p>
+        </div>
+        <div class="p-5 bg-white rounded-xl border border-blue-100 hover:shadow-lg hover:shadow-blue-500/10 transition-all">
+          <div class="w-10 h-10 bg-gradient-to-br from-emerald-600 to-teal-600 rounded-lg flex items-center justify-center mx-auto mb-3">
+            <i class="pi pi-compass text-white text-sm"></i>
+          </div>
+          <h3 class="text-base font-bold text-slate-900 mb-2">🏞️ River Systems</h3>
+          <p class="text-slate-600 text-sm">Explore Morocco's flowing waters</p>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>

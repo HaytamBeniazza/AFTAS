@@ -212,5 +212,12 @@ export class LoginFormComponent implements OnInit, OnDestroy {
     this.isLoading = false;
     this.showPassword = false;
     this.passwordStrength = null;
+    this.rememberMe = false;
+  }
+
+  switchToRegister(): void {
+    // This method can be used to switch to register form
+    // For now, navigate to register route
+    this.router.navigate(['/signup']);
   }
 }

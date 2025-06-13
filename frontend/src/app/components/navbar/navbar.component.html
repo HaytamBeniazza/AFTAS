@@ -1,103 +1,206 @@
-<!-- Modern Navigation Bar -->
-<nav class="navbar px-6 py-4">
-  <div class="max-w-7xl mx-auto flex items-center justify-between">
-
-    <!-- Logo/Brand -->
-    <div class="flex items-center space-x-3">
-      <div class="flex items-center justify-center w-10 h-10 bg-gradient-to-br from-blue-400 to-teal-400 rounded-lg">
-        <i class="pi pi-trophy text-white text-xl"></i>
+<!-- Award-Winning Minimal Navigation - Ocean Touch with Controlled Wave Animation -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-blue-100 relative overflow-hidden">
+  <!-- Realistic Ocean Wave Animation - Single Wave -->
+  <div class="absolute inset-0 opacity-20 overflow-hidden">
+    <div class="wave-container absolute inset-0">
+      <!-- Realistic Wave Shape -->
+      <div class="ocean-wave absolute bottom-0 w-full h-full">
+        <svg class="wave-svg absolute bottom-0 w-full h-full" viewBox="0 0 1200 60" preserveAspectRatio="none">
+          <path class="wave-path" d="M0,30 Q150,10 300,30 T600,30 T900,30 T1200,30 V60 H0 Z"
+                fill="url(#waveGradient)" opacity="0.6"/>
+          <path class="wave-path-2" d="M0,35 Q200,15 400,35 T800,35 T1200,35 V60 H0 Z"
+                fill="url(#waveGradient2)" opacity="0.4"/>
+          <defs>
+            <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0"/>
+              <stop offset="50%" style="stop-color:#06b6d4;stop-opacity:0.8"/>
+              <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:0"/>
+            </linearGradient>
+            <linearGradient id="waveGradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#0ea5e9;stop-opacity:0"/>
+              <stop offset="50%" style="stop-color:#22d3ee;stop-opacity:0.6"/>
+              <stop offset="100%" style="stop-color:#0ea5e9;stop-opacity:0"/>
+            </linearGradient>
+          </defs>
+        </svg>
       </div>
-      <span class="text-2xl font-bold gradient-text">AFTAS</span>
     </div>
+  </div>
 
-    <!-- Desktop Navigation -->
-    <div class="hidden md:flex items-center space-x-6">
-      <a routerLink="/" routerLinkActive="bg-white bg-opacity-20" class="nav-link">
-        <i class="pi pi-home mr-2"></i>Home
-      </a>
-      <a routerLink="/competition" routerLinkActive="bg-white bg-opacity-20" class="nav-link" *ngIf="(user | async)?.role !== 'NONE'">
-        <i class="pi pi-calendar mr-2"></i>Competitions
-      </a>
-      <a routerLink="/managemember" routerLinkActive="bg-white bg-opacity-20" class="nav-link" *ngIf="(user | async)?.role === 'MANAGER'">
-        <i class="pi pi-users mr-2"></i>Manage Members
-      </a>
-    </div>
+  <div class="max-w-7xl mx-auto px-4 py-2 relative z-10">
+    <div class="flex items-center justify-between">
 
-    <!-- User Actions -->
-    <div class="flex items-center space-x-4">
+      <!-- AFTAS Brand -->
+      <div class="flex items-center space-x-2">
+        <div class="w-6 h-6 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-md flex items-center justify-center">
+          <i class="pi pi-star-fill text-white text-xs"></i>
+        </div>
+        <div>
+          <span class="text-lg font-bold text-slate-900 tracking-tight">AFTAS</span>
+          <div class="text-xs text-blue-600 font-medium">Morocco Fishing</div>
+        </div>
+      </div>
 
-      <!-- Unauthenticated User Actions -->
-      <div class="hidden md:flex items-center space-x-3" *ngIf="!(user | async)?.username">
-        <a routerLink="/login" class="btn-outline text-white border-white hover:bg-white hover:text-blue-900">
-          <i class="pi pi-sign-in mr-2"></i>Login
+      <!-- Navigation Links -->
+      <div class="hidden md:flex items-center space-x-6">
+        <a routerLink="/" routerLinkActive="text-blue-600 font-medium"
+           class="text-slate-600 hover:text-blue-600 transition-colors text-sm font-medium">
+          <i class="pi pi-home mr-1 text-xs"></i>Home
         </a>
-        <a routerLink="/signup" class="btn-primary">
-          <i class="pi pi-user-plus mr-2"></i>Sign Up
+        <a routerLink="/competition" routerLinkActive="text-blue-600 font-medium"
+           class="text-slate-600 hover:text-blue-600 transition-colors text-sm font-medium"
+           *ngIf="(user | async)?.role !== 'NONE'">
+          <i class="pi pi-trophy mr-1 text-xs text-amber-500"></i>Tournaments
+        </a>
+        <a routerLink="/fish" routerLinkActive="text-blue-600 font-medium"
+           class="text-slate-600 hover:text-blue-600 transition-colors text-sm font-medium"
+           *ngIf="(user | async)?.role !== 'NONE'">
+          <i class="pi pi-heart-fill mr-1 text-xs text-cyan-500"></i>Species
+        </a>
+        <a routerLink="/managemember" routerLinkActive="text-blue-600 font-medium"
+           class="text-slate-600 hover:text-blue-600 transition-colors text-sm font-medium"
+           *ngIf="(user | async)?.role === 'MANAGER'">
+          <i class="pi pi-users mr-1 text-xs text-emerald-500"></i>Members
         </a>
       </div>
 
-      <!-- Authenticated User Menu -->
-      <div class="flex items-center space-x-3" *ngIf="(user | async)?.username">
-        <!-- User Profile -->
-        <div class="flex items-center space-x-3 glass rounded-lg px-4 py-2">
-          <div class="flex items-center justify-center w-8 h-8 bg-gradient-to-br from-blue-400 to-teal-400 rounded-full">
-            <i class="pi pi-user text-white text-sm"></i>
-          </div>
-          <div class="hidden md:block">
-            <span class="text-white font-medium">{{(user | async)?.username}}</span>
-            <div class="text-xs text-blue-200">{{(user | async)?.role}}</div>
-          </div>
+      <!-- User Actions -->
+      <div class="flex items-center space-x-2">
+
+        <!-- Guest Actions -->
+        <div class="hidden md:flex items-center space-x-2" *ngIf="!(user | async)?.username">
+          <a routerLink="/login"
+             class="px-3 py-1.5 text-slate-600 hover:text-blue-600 text-sm font-medium transition-colors">
+            Sign In
+          </a>
+          <a routerLink="/signup"
+             class="px-3 py-1.5 bg-gradient-to-r from-blue-600 to-cyan-600 text-white hover:from-blue-700 hover:to-cyan-700 text-sm font-medium rounded-md transition-colors">
+            Join AFTAS
+          </a>
         </div>
 
-        <!-- Logout Button -->
-        <button (click)="logout()" class="btn-outline border-red-400 text-red-400 hover:bg-red-400 hover:text-white">
-          <i class="pi pi-sign-out mr-2"></i>
-          <span class="hidden md:inline">Logout</span>
+        <!-- User Profile -->
+        <div class="flex items-center space-x-2" *ngIf="(user | async)?.username">
+          <div class="flex items-center space-x-2 px-2 py-1 bg-blue-50 rounded-md">
+            <div class="w-5 h-5 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-full flex items-center justify-center">
+              <span class="text-white text-xs font-bold">{{(user | async)?.username | slice:0:1 | uppercase}}</span>
+            </div>
+            <div class="hidden md:block">
+              <div class="text-xs font-medium text-slate-900">{{(user | async)?.username}}</div>
+              <div class="text-xs text-blue-600">{{(user | async)?.role}}</div>
+            </div>
+          </div>
+          <button (click)="logout()"
+                  class="p-1.5 text-slate-400 hover:text-blue-600 transition-colors">
+            <i class="pi pi-sign-out text-sm"></i>
+          </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <button class="md:hidden p-1.5 text-slate-600 hover:text-blue-600 transition-colors"
+                (click)="mobileMenuOpen = !mobileMenuOpen">
+          <i class="pi text-sm" [class.pi-bars]="!mobileMenuOpen" [class.pi-times]="mobileMenuOpen"></i>
         </button>
       </div>
-
-      <!-- Mobile Menu Button -->
-      <button class="md:hidden p-2 text-white hover:bg-white hover:bg-opacity-20 rounded-lg"
-              (click)="mobileMenuOpen = !mobileMenuOpen">
-        <i class="pi" [class.pi-bars]="!mobileMenuOpen" [class.pi-times]="mobileMenuOpen"></i>
-      </button>
     </div>
   </div>
 
   <!-- Mobile Menu -->
-  <div class="md:hidden transition-all duration-300 overflow-hidden"
-       [class.max-h-0]="!mobileMenuOpen"
-       [class.max-h-96]="mobileMenuOpen"
-       [class.opacity-0]="!mobileMenuOpen"
-       [class.opacity-100]="mobileMenuOpen">
-    <div class="px-4 py-6 space-y-4 border-t border-white border-opacity-20 mt-4">
-
-      <!-- Mobile Navigation Links -->
-      <a routerLink="/" class="block nav-link" (click)="mobileMenuOpen = false">
-        <i class="pi pi-home mr-3"></i>Home
+  <div class="md:hidden border-t border-blue-100 bg-white"
+       [class.hidden]="!mobileMenuOpen">
+    <div class="px-4 py-3 space-y-2">
+      <a routerLink="/" class="block py-1.5 text-slate-600 hover:text-blue-600 text-sm font-medium"
+         (click)="mobileMenuOpen = false">
+        <i class="pi pi-home mr-2 text-xs"></i>Home
       </a>
-      <a routerLink="/competition" class="block nav-link" *ngIf="(user | async)?.role !== 'NONE'" (click)="mobileMenuOpen = false">
-        <i class="pi pi-calendar mr-3"></i>Competitions
+      <a routerLink="/competition" class="block py-1.5 text-slate-600 hover:text-blue-600 text-sm font-medium"
+         *ngIf="(user | async)?.role !== 'NONE'" (click)="mobileMenuOpen = false">
+        <i class="pi pi-trophy mr-2 text-xs text-amber-500"></i>Tournaments
       </a>
-      <a routerLink="/managemember" class="block nav-link" *ngIf="(user | async)?.role === 'MANAGER'" (click)="mobileMenuOpen = false">
-        <i class="pi pi-users mr-3"></i>Manage Members
+      <a routerLink="/fish" class="block py-1.5 text-slate-600 hover:text-blue-600 text-sm font-medium"
+         *ngIf="(user | async)?.role !== 'NONE'" (click)="mobileMenuOpen = false">
+        <i class="pi pi-heart-fill mr-2 text-xs text-cyan-500"></i>Species
+      </a>
+      <a routerLink="/managemember" class="block py-1.5 text-slate-600 hover:text-blue-600 text-sm font-medium"
+         *ngIf="(user | async)?.role === 'MANAGER'" (click)="mobileMenuOpen = false">
+        <i class="pi pi-users mr-2 text-xs text-emerald-500"></i>Members
       </a>
 
-      <!-- Mobile User Actions -->
-      <div class="pt-4 border-t border-white border-opacity-20" *ngIf="!(user | async)?.username">
-        <a routerLink="/login" class="block w-full text-center btn-outline text-white border-white mb-3" (click)="mobileMenuOpen = false">
-          <i class="pi pi-sign-in mr-2"></i>Login
-        </a>
-        <a routerLink="/signup" class="block w-full text-center btn-primary" (click)="mobileMenuOpen = false">
-          <i class="pi pi-user-plus mr-2"></i>Sign Up
-        </a>
-      </div>
-
-      <div class="pt-4 border-t border-white border-opacity-20" *ngIf="(user | async)?.username">
-        <button (click)="logout(); mobileMenuOpen = false" class="block w-full text-center btn-outline border-red-400 text-red-400">
-          <i class="pi pi-sign-out mr-2"></i>Logout
-        </button>
+      <div class="border-t border-blue-100 pt-2" *ngIf="!(user | async)?.username">
+        <a routerLink="/login" class="block w-full text-center py-1.5 text-slate-600 hover:text-blue-600 text-sm font-medium mb-1"
+           (click)="mobileMenuOpen = false">Sign In</a>
+        <a routerLink="/signup" class="block w-full text-center py-1.5 bg-gradient-to-r from-blue-600 to-cyan-600 text-white hover:from-blue-700 hover:to-cyan-700 text-sm font-medium rounded-md"
+           (click)="mobileMenuOpen = false">Join AFTAS</a>
       </div>
     </div>
-  </div>
+</div>
 </nav>
+
+<style>
+/* Realistic Ocean Wave Animation */
+.wave-container {
+  pointer-events: none;
+}
+
+.ocean-wave {
+  transform: translateX(-100%);
+  animation: wave-flow 8s ease-in-out infinite;
+}
+
+.wave-svg {
+  height: 100%;
+}
+
+.wave-path {
+  animation: wave-morph 4s ease-in-out infinite;
+}
+
+.wave-path-2 {
+  animation: wave-morph-2 6s ease-in-out infinite;
+  animation-delay: -2s;
+}
+
+@keyframes wave-flow {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes wave-morph {
+  0%, 100% {
+    d: path("M0,30 Q150,10 300,30 T600,30 T900,30 T1200,30 V60 H0 Z");
+  }
+  25% {
+    d: path("M0,25 Q150,15 300,25 T600,25 T900,25 T1200,25 V60 H0 Z");
+  }
+  50% {
+    d: path("M0,35 Q150,5 300,35 T600,35 T900,35 T1200,35 V60 H0 Z");
+  }
+  75% {
+    d: path("M0,28 Q150,12 300,28 T600,28 T900,28 T1200,28 V60 H0 Z");
+  }
+}
+
+@keyframes wave-morph-2 {
+  0%, 100% {
+    d: path("M0,35 Q200,15 400,35 T800,35 T1200,35 V60 H0 Z");
+  }
+  33% {
+    d: path("M0,32 Q200,18 400,32 T800,32 T1200,32 V60 H0 Z");
+  }
+  66% {
+    d: path("M0,38 Q200,12 400,38 T800,38 T1200,38 V60 H0 Z");
+  }
+}
+</style>

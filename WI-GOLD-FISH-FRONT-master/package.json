@@ -5,8 +5,16 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:prod": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "test:ci": "ng test --watch=false --browsers=ChromeHeadless",
+    "test:coverage": "ng test --code-coverage --watch=false --browsers=ChromeHeadless",
+    "lint": "ng lint",
+    "e2e": "ng e2e",
+    "analyze": "ng build --stats-json && npx webpack-bundle-analyzer dist/wi-gold-fish-front/stats.json",
+    "docker:build": "docker build -t aftas-frontend .",
+    "docker:run": "docker run -p 4200:80 aftas-frontend"
   },
   "private": true,
   "dependencies": {

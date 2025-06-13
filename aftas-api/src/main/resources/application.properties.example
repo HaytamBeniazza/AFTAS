@@ -1,0 +1,61 @@
+# ====================================
+# AFTAS - Application Configuration
+# ====================================
+
+# ====================================
+# Server Configuration
+# ====================================
+server.port=8080
+server.servlet.context-path=/api
+
+# ====================================
+# Database Configuration
+# ====================================
+# PostgreSQL Database Configuration
+spring.datasource.url=jdbc:postgresql://localhost:5432/aftas_db
+spring.datasource.username=your_username
+spring.datasource.password=your_password
+spring.datasource.driver-class-name=org.postgresql.Driver
+
+# ====================================
+# JPA/Hibernate Configuration
+# ====================================
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+
+# ====================================
+# JWT Configuration
+# ====================================
+jwt.secret=your-super-secret-jwt-key-here-make-it-long-and-secure
+jwt.expiration=86400000
+
+# ====================================
+# CORS Configuration
+# ====================================
+cors.allowed-origins=http://localhost:4200,http://localhost:3000
+cors.allowed-methods=GET,POST,PUT,DELETE,PATCH,OPTIONS
+cors.allowed-headers=*
+cors.allow-credentials=true
+
+# ====================================
+# OpenAPI/Swagger Configuration
+# ====================================
+springdoc.api-docs.path=/v3/api-docs
+springdoc.swagger-ui.path=/swagger-ui.html
+springdoc.swagger-ui.operationsSorter=method
+
+# ====================================
+# Logging Configuration
+# ====================================
+logging.level.com.WI.WIGOLDFISH=DEBUG
+logging.level.org.springframework.security=DEBUG
+logging.pattern.console=%d{yyyy-MM-dd HH:mm:ss} - %msg%n
+
+# ====================================
+# Application Specific Configuration
+# ====================================
+app.name=AFTAS - Advanced Fishing Tournament Administration System
+app.version=1.0.0
+app.description=Professional fishing competition management system 

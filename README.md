@@ -171,9 +171,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 👨‍💻 **Developer**
 
 **Haytam Beniazza**
-- Portfolio: [Your Portfolio URL]
-- LinkedIn: [Your LinkedIn URL]
-- Email: [Your Email]
 
 ---
 

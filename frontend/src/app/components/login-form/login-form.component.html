@@ -1,118 +1,140 @@
-<!-- Minimal Login Form - Ocean Touch -->
-<div class="min-h-screen bg-gradient-to-b from-blue-50/30 to-white flex items-center justify-center px-6 pt-20 relative overflow-hidden">
+<!-- Minimal Login Form - Ocean Touch with Fisherman's Catch -->
+<div class="min-h-screen bg-gradient-to-b from-blue-50/30 to-white flex items-center justify-center px-6 relative overflow-hidden">
   <!-- Subtle Ocean Background -->
   <div class="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-blue-100/20 to-cyan-100/20 rounded-full blur-3xl"></div>
 
+  <!-- Login Card with Caught Fish -->
   <div class="w-full max-w-sm relative z-10">
+    <!-- Beautiful Card Background -->
+    <div class="relative bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 p-8 overflow-hidden">
 
-    <!-- Header -->
-    <div class="text-center mb-6">
-      <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-lg flex items-center justify-center mx-auto mb-3">
-        <i class="pi pi-star-fill text-white"></i>
-      </div>
-      <h1 class="text-xl font-bold text-slate-900 mb-1">Welcome back 🌊</h1>
-      <p class="text-sm text-slate-600">Sign in to your AFTAS account</p>
-    </div>
-
-    <!-- Login Form -->
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-4">
-
-      <!-- Username -->
-      <div>
-        <label class="block text-xs font-medium text-slate-900 mb-1">
-          <i class="pi pi-user mr-1 text-blue-600"></i>Username
-        </label>
-        <input
-          type="text"
-          formControlName="username"
-          placeholder="Enter your username"
-          class="w-full px-3 py-2 text-sm border border-blue-200 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 focus:border-transparent transition-colors bg-white/80"
-          [class.border-red-300]="loginForm.get('username')?.invalid && loginForm.get('username')?.touched"
-        >
-      </div>
-
-      <!-- Password -->
-      <div>
-        <label class="block text-xs font-medium text-slate-900 mb-1">
-          <i class="pi pi-lock mr-1 text-blue-600"></i>Password
-        </label>
+      <!-- Caught Fish Decoration - Catfish inside card, alive and moving -->
+      <div class="absolute top-4 right-4 z-20 transform -rotate-12 animate-fish-alive">
         <div class="relative">
+          <!-- Fish Shadow on card -->
+          <div class="absolute top-8 left-2 w-16 h-8 bg-black/10 rounded-full blur-sm transform rotate-6"></div>
+          <!-- The Caught Catfish -->
+          <img
+            src="assets/images/catfish.png"
+            alt="Caught Catfish"
+            class="w-20 h-20 object-contain drop-shadow-2xl transform rotate-12 hover:-rotate-6 transition-transform duration-500 animate-fish-float"
+            style="filter: drop-shadow(4px 8px 12px rgba(0,0,0,0.3)); transform: scaleX(-1) rotate(12deg);">
+          <!-- Fishing Line Effect -->
+          <div class="absolute -top-2 right-6 w-0.5 h-6 bg-gradient-to-b from-amber-600 to-transparent opacity-60 animate-line-sway"></div>
+          <!-- Hook Effect -->
+          <div class="absolute -top-2 right-5 w-2 h-2 border-2 border-amber-600 rounded-full bg-amber-200 animate-hook-swing"></div>
+        </div>
+      </div>
+
+      <!-- Header -->
+      <div class="text-center mb-6 relative z-10">
+        <div class="w-12 h-12 bg-gradient-to-br from-[#06b5d4] to-cyan-600 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+          <i class="pi pi-star-fill text-white text-lg"></i>
+        </div>
+        <h1 class="text-2xl font-bold text-slate-900 mb-2">Welcome back 🌊</h1>
+        <p class="text-sm text-slate-600">Sign in to your AFTAS account</p>
+      </div>
+
+      <!-- Login Form -->
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-5">
+
+        <!-- Username -->
+        <div>
+          <label class="block text-sm font-medium text-slate-900 mb-2">
+            <i class="pi pi-user mr-2 text-[#06b5d4]"></i>Username
+          </label>
           <input
-            [type]="showPassword ? 'text' : 'password'"
-            formControlName="password"
-            placeholder="Enter your password"
-            class="w-full px-3 py-2 text-sm border border-blue-200 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 focus:border-transparent transition-colors pr-10 bg-white/80"
-            [class.border-red-300]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+            type="text"
+            formControlName="username"
+            placeholder="Enter your username"
+            class="w-full px-4 py-3 text-sm border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#06b5d4] focus:border-transparent transition-all bg-white/80 shadow-sm"
+            [class.border-red-300]="loginForm.get('username')?.invalid && loginForm.get('username')?.touched"
           >
-          <button
-            type="button"
-            (click)="showPassword = !showPassword"
-            class="absolute right-2 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-blue-600"
-          >
-            <i class="pi text-sm" [class.pi-eye]="!showPassword" [class.pi-eye-slash]="showPassword"></i>
+        </div>
+
+        <!-- Password -->
+        <div>
+          <label class="block text-sm font-medium text-slate-900 mb-2">
+            <i class="pi pi-lock mr-2 text-[#06b5d4]"></i>Password
+          </label>
+          <div class="relative">
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              formControlName="password"
+              placeholder="Enter your password"
+              class="w-full px-4 py-3 text-sm border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#06b5d4] focus:border-transparent transition-all pr-12 bg-white/80 shadow-sm"
+              [class.border-red-300]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+            >
+            <button
+              type="button"
+              (click)="showPassword = !showPassword"
+              class="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-[#06b5d4] transition-colors"
+            >
+              <i class="pi text-lg" [class.pi-eye]="!showPassword" [class.pi-eye-slash]="showPassword"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Remember & Forgot -->
+        <div class="flex items-center justify-between">
+          <label class="flex items-center">
+            <input type="checkbox" class="w-4 h-4 text-[#06b5d4] border-slate-300 rounded focus:ring-[#06b5d4]">
+            <span class="ml-2 text-sm text-slate-600">Remember me</span>
+          </label>
+          <button type="button" class="text-sm text-[#06b5d4] hover:text-cyan-700 font-medium">
+            Forgot password?
           </button>
         </div>
-      </div>
 
-      <!-- Remember & Forgot -->
-      <div class="flex items-center justify-between">
-        <label class="flex items-center">
-          <input type="checkbox" class="w-3 h-3 text-blue-600 border-blue-300 rounded focus:ring-blue-600">
-          <span class="ml-1.5 text-xs text-slate-600">Remember me</span>
-        </label>
-        <button type="button" class="text-xs text-blue-600 hover:text-blue-700 font-medium">
-          Forgot password?
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          [disabled]="loginForm.invalid"
+          class="w-full bg-gradient-to-r from-[#06b5d4] to-cyan-600 text-white py-3 text-sm rounded-xl font-semibold hover:from-cyan-600 hover:to-[#06b5d4] focus:outline-none focus:ring-2 focus:ring-[#06b5d4] focus:ring-offset-2 transition-all disabled:bg-gray-300 disabled:cursor-not-allowed shadow-lg shadow-[#06b5d4]/25 transform hover:scale-[1.02]"
+        >
+          🌊 Sign In to AFTAS
         </button>
-      </div>
 
-      <!-- Submit Button -->
-      <button
-        type="submit"
-        [disabled]="loginForm.invalid"
-        class="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-2 text-sm rounded-md font-medium hover:from-blue-700 hover:to-cyan-700 focus:outline-none focus:ring-1 focus:ring-blue-600 focus:ring-offset-1 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed shadow-lg shadow-blue-500/25"
-      >
-        🌊 Sign In
-      </button>
-
-      <!-- Divider -->
-      <div class="relative my-4">
-        <div class="absolute inset-0 flex items-center">
-          <div class="w-full border-t border-blue-200"></div>
+        <!-- Divider -->
+        <div class="relative my-6">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t border-slate-200"></div>
+          </div>
+          <div class="relative flex justify-center text-sm">
+            <span class="px-4 bg-white text-slate-500">or continue with</span>
+          </div>
         </div>
-        <div class="relative flex justify-center text-xs">
-          <span class="px-2 bg-white text-slate-500">or</span>
-        </div>
-      </div>
 
-      <!-- Social Login -->
-      <div class="grid grid-cols-2 gap-2">
+        <!-- Social Login -->
+        <div class="grid grid-cols-2 gap-3">
+          <button
+            type="button"
+            class="flex items-center justify-center px-4 py-3 text-sm border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors shadow-sm"
+          >
+            <i class="pi pi-google text-red-500 mr-2"></i>
+            <span class="font-medium text-slate-700">Google</span>
+          </button>
+          <button
+            type="button"
+            class="flex items-center justify-center px-4 py-3 text-sm border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors shadow-sm"
+          >
+            <i class="pi pi-facebook text-blue-500 mr-2"></i>
+            <span class="font-medium text-slate-700">Facebook</span>
+          </button>
+        </div>
+      </form>
+
+      <!-- Sign Up Link -->
+      <div class="text-center mt-6 pt-4 border-t border-slate-100">
+        <span class="text-sm text-slate-600">New to AFTAS? </span>
         <button
           type="button"
-          class="flex items-center justify-center px-3 py-2 text-xs border border-blue-200 rounded-md hover:bg-blue-50 transition-colors"
+          (click)="switchToRegister()"
+          class="text-sm text-[#06b5d4] hover:text-cyan-700 font-semibold"
         >
-          <i class="pi pi-google text-red-500 mr-1.5 text-xs"></i>
-          <span class="font-medium text-slate-700">Google</span>
-        </button>
-        <button
-          type="button"
-          class="flex items-center justify-center px-3 py-2 text-xs border border-blue-200 rounded-md hover:bg-blue-50 transition-colors"
-        >
-          <i class="pi pi-facebook text-blue-500 mr-1.5 text-xs"></i>
-          <span class="font-medium text-slate-700">Facebook</span>
+          Join the fishing community 🎣
         </button>
       </div>
-    </form>
-
-    <!-- Sign Up Link -->
-    <div class="text-center mt-4">
-      <span class="text-xs text-slate-600">New to AFTAS? </span>
-      <button
-        type="button"
-        (click)="switchToRegister()"
-        class="text-xs text-blue-600 hover:text-blue-700 font-semibold"
-      >
-        Join the fishing community 🎣
-      </button>
     </div>
   </div>
 </div>

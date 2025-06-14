@@ -16,8 +16,8 @@
   --ocean-deep: #0f172a;           /* Deep ocean blue */
   --ocean-night: #1e293b;         /* Night ocean */
   --ocean-dark: #334155;          /* Dark water */
-  --ocean-blue: #0ea5e9;          /* Ocean blue */
-  --ocean-light: #38bdf8;         /* Light ocean */
+  --ocean-blue: #06b5d4;          /* Ocean blue - Custom */
+  --ocean-light: #06b5d4;         /* Light ocean - Custom */
   --ocean-foam: #7dd3fc;          /* Ocean foam */
   --ocean-mist: #e0f2fe;          /* Ocean mist */
 
@@ -46,7 +46,7 @@
 
   /* Shadows & Effects */
   --shadow-wave: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
-  --shadow-foam: 0 10px 25px rgba(14, 165, 233, 0.15);
+  --shadow-foam: 0 10px 25px rgba(6, 181, 212, 0.15);
   --shadow-deep: 0 35px 60px -12px rgba(15, 23, 42, 0.4);
 
   /* Animations */
@@ -87,9 +87,9 @@ body::before {
   width: 100%;
   height: 100%;
   background:
-    radial-gradient(circle at 20% 50%, rgba(14, 165, 233, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(125, 211, 252, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 40% 80%, rgba(56, 189, 248, 0.1) 0%, transparent 50%);
+    radial-gradient(circle at 20% 50%, rgba(6, 181, 212, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(6, 181, 212, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(6, 181, 212, 0.1) 0%, transparent 50%);
   animation: oceanWaves var(--wave-duration) ease-in-out infinite alternate;
   pointer-events: none;
   z-index: -1;
@@ -414,6 +414,116 @@ h3 {
   filter: drop-shadow(0 4px 8px rgba(14, 165, 233, 0.2));
 }
 
+/* Alive Sea Creatures Animations */
+@keyframes fish-alive {
+  0%, 100% {
+    transform: translateY(0px) rotate(-12deg);
+  }
+  50% {
+    transform: translateY(-2px) rotate(-10deg);
+  }
+}
+
+@keyframes fish-float {
+  0%, 100% {
+    transform: scaleX(-1) rotate(12deg) translateY(0px);
+  }
+  25% {
+    transform: scaleX(-1) rotate(14deg) translateY(-1px);
+  }
+  75% {
+    transform: scaleX(-1) rotate(10deg) translateY(1px);
+  }
+}
+
+@keyframes crab-alive {
+  0%, 100% {
+    transform: translateX(0px) rotate(-3deg);
+  }
+  33% {
+    transform: translateX(1px) rotate(-2deg);
+  }
+  66% {
+    transform: translateX(-1px) rotate(-4deg);
+  }
+}
+
+@keyframes crab-scuttle {
+  0%, 100% {
+    transform: scaleX(-1) rotate(3deg) translateY(0px);
+  }
+  20% {
+    transform: scaleX(-1) rotate(5deg) translateY(-0.5px);
+  }
+  40% {
+    transform: scaleX(-1) rotate(1deg) translateY(0.5px);
+  }
+  60% {
+    transform: scaleX(-1) rotate(4deg) translateY(-0.5px);
+  }
+  80% {
+    transform: scaleX(-1) rotate(2deg) translateY(0.5px);
+  }
+}
+
+@keyframes line-sway {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+}
+
+@keyframes hook-swing {
+  0%, 100% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(1px);
+  }
+}
+
+@keyframes net-flutter {
+  0%, 100% {
+    opacity: 0.4;
+    transform: rotate(12deg);
+  }
+  50% {
+    opacity: 0.6;
+    transform: rotate(15deg);
+  }
+}
+
+/* Animation Classes */
+.animate-fish-alive {
+  animation: fish-alive 4s ease-in-out infinite;
+}
+
+.animate-fish-float {
+  animation: fish-float 3s ease-in-out infinite;
+}
+
+.animate-crab-alive {
+  animation: crab-alive 5s ease-in-out infinite;
+}
+
+.animate-crab-scuttle {
+  animation: crab-scuttle 4s ease-in-out infinite;
+}
+
+.animate-line-sway {
+  animation: line-sway 3s ease-in-out infinite;
+}
+
+.animate-hook-swing {
+  animation: hook-swing 2s ease-in-out infinite;
+}
+
+.animate-net-flutter {
+  animation: net-flutter 3s ease-in-out infinite;
+}
+
 /* PrimeNG Overrides with Ocean Theme */
 .p-dialog .p-dialog-header {
   background: var(--deep-ocean-card);
@@ -428,7 +538,7 @@ h3 {
 
 .p-button {
   background: var(--wave-gradient) !important;
-  border: 1px solid rgba(125, 211, 252, 0.3) !important;
+  border: 1px solid rgba(6, 181, 212, 0.3) !important;
   font-family: var(--font-body) !important;
   font-weight: 600 !important;
 }
@@ -497,12 +607,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #0ea5e9, #06b6d4);
+  background: linear-gradient(135deg, #06b5d4, #06b5d4);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #0284c7, #0891b2);
+  background: linear-gradient(135deg, #0891b2, #0891b2);
 }
 
 /* Subtle focus enhancements */

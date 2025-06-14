@@ -1,0 +1,479 @@
+/* AFTAS Homepage - Ocean Animation System */
+
+/* Sea Creature Animations */
+@keyframes fish-swim-slow {
+  0%, 100% { transform: translateX(0px) translateY(0px) rotate(12deg); }
+  25% { transform: translateX(20px) translateY(-10px) rotate(8deg); }
+  50% { transform: translateX(40px) translateY(5px) rotate(15deg); }
+  75% { transform: translateX(20px) translateY(10px) rotate(10deg); }
+}
+
+@keyframes fish-float-gentle {
+  0%, 100% { transform: translateY(0px) rotate(-6deg); }
+  33% { transform: translateY(-15px) rotate(-2deg); }
+  66% { transform: translateY(-8px) rotate(-10deg); }
+}
+
+@keyframes crab-drift {
+  0%, 100% { transform: translateX(0px) translateY(0px) rotate(45deg); }
+  25% { transform: translateX(-15px) translateY(-5px) rotate(40deg); }
+  50% { transform: translateX(-30px) translateY(8px) rotate(50deg); }
+  75% { transform: translateX(-15px) translateY(-3px) rotate(42deg); }
+}
+
+@keyframes squid-glide {
+  0%, 100% { transform: translateY(0px) translateX(0px) rotate(-12deg); }
+  50% { transform: translateY(-25px) translateX(-20px) rotate(-8deg); }
+}
+
+@keyframes fish-swim-reverse {
+  0%, 100% { transform: translateX(0px) translateY(0px) scaleX(-1) rotate(6deg); }
+  50% { transform: translateX(-30px) translateY(-10px) scaleX(-1) rotate(2deg); }
+}
+
+/* Unified Ocean Wave Animations */
+@keyframes ocean-current-unified {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes wave-motion-unified {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+@keyframes wave-flow {
+  0% { transform: translateX(-100px); }
+  100% { transform: translateX(100px); }
+}
+
+@keyframes wave-flow-reverse {
+  0% { transform: translateX(100px); }
+  100% { transform: translateX(-100px); }
+}
+
+@keyframes debris-float {
+  0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+  25% { transform: translateY(-8px) translateX(5px) rotate(90deg); }
+  50% { transform: translateY(-4px) translateX(-3px) rotate(180deg); }
+  75% { transform: translateY(-12px) translateX(8px) rotate(270deg); }
+}
+
+/* Floating Sea Life Animations */
+@keyframes jellyfish-float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  25% { transform: translateY(-15px) rotate(2deg); }
+  50% { transform: translateY(-10px) rotate(0deg); }
+  75% { transform: translateY(-20px) rotate(-2deg); }
+}
+
+@keyframes tentacle-sway {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(10deg); }
+}
+
+@keyframes fish-school {
+  0% { transform: translateX(0px); }
+  50% { transform: translateX(30px); }
+  100% { transform: translateX(0px); }
+}
+
+@keyframes fish-swim {
+  0%, 100% { transform: translateX(0px) scaleX(1); }
+  50% { transform: translateX(10px) scaleX(1.1); }
+}
+
+@keyframes seaweed-sway {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(3deg); }
+  75% { transform: rotate(-3deg); }
+}
+
+/* Hero Section Animations */
+@keyframes bubble-trail {
+  0% { opacity: 0; transform: translateY(20px); }
+  50% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-100px); }
+}
+
+@keyframes bubble-rise {
+  0% { transform: translateY(0px) scale(1); opacity: 0.7; }
+  50% { transform: translateY(-50px) scale(1.2); opacity: 1; }
+  100% { transform: translateY(-100px) scale(0.8); opacity: 0; }
+}
+
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes wave-text {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes gradient-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes underwater-light {
+  0%, 100% { opacity: 0.3; transform: translateX(-20px); }
+  50% { opacity: 0.6; transform: translateX(20px); }
+}
+
+@keyframes fade-in-up {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0px); }
+}
+
+@keyframes float-cta {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-3px); }
+}
+
+@keyframes fish-swim-welcome {
+  0%, 100% { transform: translateX(0px) scaleX(1); }
+  50% { transform: translateX(15px) scaleX(-1); }
+}
+
+@keyframes underwater-glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.8; }
+}
+
+/* Ocean Features Section */
+@keyframes float-card {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes trophy-glow {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.2); }
+}
+
+@keyframes particle-float {
+  0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.6; }
+  25% { transform: translateY(-10px) translateX(5px); opacity: 1; }
+  75% { transform: translateY(-5px) translateX(-5px); opacity: 0.8; }
+}
+
+@keyframes community-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes swim-particle {
+  0%, 100% { transform: translateX(0px) translateY(0px); }
+  33% { transform: translateX(10px) translateY(-5px); }
+  66% { transform: translateX(-5px) translateY(5px); }
+}
+
+@keyframes chart-pulse {
+  0%, 100% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.1); filter: brightness(1.1); }
+}
+
+@keyframes data-pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.3); }
+}
+
+/* Statistics Section */
+@keyframes stat-float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+}
+
+@keyframes counter {
+  0% { transform: scale(0.8); opacity: 0; }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Morocco Waters Section */
+@keyframes location-float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-12px) rotate(1deg); }
+  66% { transform: translateY(-6px) rotate(-1deg); }
+}
+
+@keyframes sun-glow {
+  0%, 100% { filter: brightness(1) drop-shadow(0 0 10px rgba(251, 146, 60, 0.3)); }
+  50% { filter: brightness(1.2) drop-shadow(0 0 20px rgba(251, 146, 60, 0.5)); }
+}
+
+@keyframes mountain-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes river-flow {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(5deg); }
+  75% { transform: rotate(-5deg); }
+}
+
+@keyframes wave-gentle {
+  0%, 100% { transform: scaleX(1); }
+  50% { transform: scaleX(1.1); }
+}
+
+@keyframes river-current {
+  0% { transform: translateX(-20px); }
+  100% { transform: translateX(20px); }
+}
+
+/* Apply Sea Creature Animations */
+.animate-fish-swim-slow {
+  animation: fish-swim-slow 12s ease-in-out infinite;
+}
+
+.animate-fish-float-gentle {
+  animation: fish-float-gentle 8s ease-in-out infinite;
+}
+
+.animate-crab-drift {
+  animation: crab-drift 15s ease-in-out infinite;
+}
+
+.animate-squid-glide {
+  animation: squid-glide 10s ease-in-out infinite;
+}
+
+.animate-fish-swim-reverse {
+  animation: fish-swim-reverse 14s ease-in-out infinite;
+}
+
+/* Apply Unified Wave Animations */
+.animate-ocean-current-unified {
+  animation: ocean-current-unified 20s linear infinite;
+}
+
+.animate-wave-motion-unified {
+  background-size: 200% 200%;
+  animation: wave-motion-unified 12s ease-in-out infinite;
+}
+
+.animate-wave-flow {
+  animation: wave-flow 8s ease-in-out infinite;
+}
+
+.animate-wave-flow-reverse {
+  animation: wave-flow-reverse 10s ease-in-out infinite;
+}
+
+.animate-debris-float {
+  animation: debris-float 12s ease-in-out infinite;
+}
+
+/* Apply Other Animations */
+.animate-jellyfish-float {
+  animation: jellyfish-float 6s ease-in-out infinite;
+}
+
+.animate-tentacle-sway {
+  animation: tentacle-sway 3s ease-in-out infinite;
+}
+
+.animate-fish-school {
+  animation: fish-school 8s ease-in-out infinite;
+}
+
+.animate-fish-swim {
+  animation: fish-swim 2s ease-in-out infinite;
+}
+
+.animate-seaweed-sway {
+  animation: seaweed-sway 4s ease-in-out infinite;
+}
+
+.animate-bubble-trail {
+  animation: bubble-trail 3s ease-in-out infinite;
+}
+
+.animate-bubble-rise {
+  animation: bubble-rise 4s ease-in-out infinite;
+}
+
+.animate-float-gentle {
+  animation: float-gentle 3s ease-in-out infinite;
+}
+
+.animate-wave-text {
+  animation: wave-text 4s ease-in-out infinite;
+}
+
+.animate-gradient-flow {
+  background-size: 200% 200%;
+  animation: gradient-flow 3s ease-in-out infinite;
+}
+
+.animate-underwater-light {
+  animation: underwater-light 5s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 1s ease-out;
+}
+
+.animate-float-cta {
+  animation: float-cta 2s ease-in-out infinite;
+}
+
+.animate-fish-swim-welcome {
+  animation: fish-swim-welcome 6s ease-in-out infinite;
+}
+
+.animate-underwater-glow {
+  animation: underwater-glow 4s ease-in-out infinite;
+}
+
+.animate-float-card {
+  animation: float-card 4s ease-in-out infinite;
+}
+
+.animate-trophy-glow {
+  animation: trophy-glow 2s ease-in-out infinite;
+}
+
+.animate-particle-float {
+  animation: particle-float 3s ease-in-out infinite;
+}
+
+.animate-community-pulse {
+  animation: community-pulse 3s ease-in-out infinite;
+}
+
+.animate-swim-particle {
+  animation: swim-particle 4s ease-in-out infinite;
+}
+
+.animate-chart-pulse {
+  animation: chart-pulse 2.5s ease-in-out infinite;
+}
+
+.animate-data-pulse {
+  animation: data-pulse 2s ease-in-out infinite;
+}
+
+.animate-stat-float {
+  animation: stat-float 5s ease-in-out infinite;
+}
+
+.animate-counter {
+  animation: counter 1.5s ease-out;
+}
+
+.animate-location-float {
+  animation: location-float 6s ease-in-out infinite;
+}
+
+.animate-sun-glow {
+  animation: sun-glow 3s ease-in-out infinite;
+}
+
+.animate-mountain-pulse {
+  animation: mountain-pulse 4s ease-in-out infinite;
+}
+
+.animate-river-flow {
+  animation: river-flow 3s ease-in-out infinite;
+}
+
+.animate-wave-gentle {
+  animation: wave-gentle 2s ease-in-out infinite;
+}
+
+.animate-river-current {
+  animation: river-current 4s ease-in-out infinite;
+}
+
+/* Hover Effects */
+.group:hover .animate-trophy-glow {
+  animation-duration: 1s;
+}
+
+.group:hover .animate-community-pulse {
+  animation-duration: 1.5s;
+}
+
+.group:hover .animate-chart-pulse {
+  animation-duration: 1s;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .animate-jellyfish-float,
+  .animate-fish-school,
+  .animate-fish-swim-slow,
+  .animate-crab-drift {
+    display: none;
+  }
+
+  .animate-float-card {
+    animation-duration: 6s;
+  }
+
+  .animate-wave-flow,
+  .animate-wave-flow-reverse {
+    animation-duration: 12s;
+  }
+
+  .animate-ocean-current-unified {
+    animation-duration: 25s;
+  }
+}
+
+/* Performance Optimizations */
+.animate-fish-swim-slow,
+.animate-fish-float-gentle,
+.animate-crab-drift,
+.animate-squid-glide,
+.animate-fish-swim-reverse,
+.animate-jellyfish-float,
+.animate-fish-school,
+.animate-seaweed-sway,
+.animate-bubble-trail,
+.animate-ocean-current-unified,
+.animate-wave-flow,
+.animate-wave-flow-reverse,
+.animate-debris-float {
+  will-change: transform;
+}
+
+.animate-gradient-flow,
+.animate-wave-motion-unified {
+  will-change: background-position;
+}
+
+.animate-underwater-glow,
+.animate-data-pulse {
+  will-change: opacity;
+}
+
+/* Special Ocean Effects */
+.animate-wave-flow svg,
+.animate-wave-flow-reverse svg {
+  filter: drop-shadow(0 2px 4px rgba(6, 181, 212, 0.1));
+}
+
+/* Interactive Hover States */
+.group:hover .animate-fish-swim-welcome {
+  animation-duration: 3s;
+}
+
+.group:hover .animate-underwater-glow {
+  animation-duration: 2s;
+}
+
+/* Unified Ocean Flow Direction */
+.animate-ocean-current-unified {
+  opacity: 0.6;
+}
+
+.animate-wave-motion-unified {
+  opacity: 0.8;
+}

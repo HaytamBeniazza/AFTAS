@@ -1,181 +1,380 @@
-<!-- Award-Winning Minimal Homepage - Ocean Touch -->
-<div class="min-h-screen bg-white">
+<!-- AFTAS - Immersive Ocean Experience Homepage -->
+<div class="min-h-screen bg-gradient-to-b from-[#06b5d4]/8 via-[#06b5d4]/12 to-[#06b5d4]/16 relative overflow-hidden">
 
-  <!-- Hero Section -->
-  <section class="pt-24 pb-16 px-6 relative overflow-hidden">
-    <!-- Subtle Ocean Background -->
-    <div class="absolute inset-0 bg-gradient-to-b from-blue-50/30 to-white"></div>
-    <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-100/20 to-cyan-100/20 rounded-full blur-3xl"></div>
+  <!-- Unified Ocean Current Background -->
+  <div class="fixed inset-0 z-0 pointer-events-none">
+    <!-- Global Ocean Current -->
+    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-[#06b5d4]/4 to-transparent animate-ocean-current-unified"></div>
 
-    <div class="max-w-4xl mx-auto text-center relative z-10">
-      <div class="flex items-center justify-center mb-4">
-        <i class="pi pi-star-fill text-blue-600 text-2xl mr-2"></i>
-        <span class="text-blue-600 font-medium text-sm">🇲🇦 Morocco's Premier Fishing Platform</span>
-        <i class="pi pi-star-fill text-blue-600 text-2xl ml-2"></i>
+    <!-- Swimming Catfish -->
+    <div class="absolute top-32 left-16 animate-fish-swim-slow opacity-25">
+      <img src="assets/images/catfish.png" alt="Swimming Catfish" class="w-20 h-16 transform rotate-12">
+    </div>
+
+    <!-- Floating Speckled Fish -->
+    <div class="absolute top-64 right-24 animate-fish-float-gentle opacity-30">
+      <img src="assets/images/speckled-fish.png" alt="Speckled Fish" class="w-16 h-12 transform -rotate-6">
+    </div>
+
+    <!-- Drifting Crab -->
+    <div class="absolute bottom-40 left-32 animate-crab-drift opacity-20">
+      <img src="assets/images/crab.png" alt="Ocean Crab" class="w-14 h-14 transform rotate-45">
+    </div>
+
+    <!-- Swimming Squid -->
+    <div class="absolute top-96 right-16 animate-squid-glide opacity-25">
+      <img src="assets/images/squid.png" alt="Ocean Squid" class="w-12 h-18 transform -rotate-12">
+    </div>
+
+    <!-- Animated Jellyfish -->
+    <div class="absolute top-20 left-10 animate-jellyfish-float opacity-30">
+      <div class="w-16 h-20 bg-gradient-to-b from-purple-200/60 to-transparent rounded-full animate-pulse"></div>
+      <div class="w-1 h-12 bg-purple-300/40 mx-auto animate-tentacle-sway"></div>
+    </div>
+
+    <!-- Swimming Fish School -->
+    <div class="absolute top-40 right-20 animate-fish-school opacity-40">
+      <div class="flex space-x-2">
+        <div class="w-3 h-2 bg-[#06b5d4]/60 rounded-full animate-fish-swim"></div>
+        <div class="w-3 h-2 bg-[#06b5d4]/60 rounded-full animate-fish-swim" style="animation-delay: 0.2s;"></div>
+        <div class="w-3 h-2 bg-[#06b5d4]/60 rounded-full animate-fish-swim" style="animation-delay: 0.4s;"></div>
+      </div>
+    </div>
+
+    <!-- Floating Seaweed -->
+    <div class="absolute bottom-0 left-1/4 animate-seaweed-sway opacity-20">
+      <div class="w-2 h-32 bg-gradient-to-t from-green-400/60 to-green-200/40 rounded-t-full"></div>
+    </div>
+    <div class="absolute bottom-0 right-1/3 animate-seaweed-sway opacity-25" style="animation-delay: 1s;">
+      <div class="w-3 h-40 bg-gradient-to-t from-emerald-500/60 to-emerald-200/40 rounded-t-full"></div>
+    </div>
+
+    <!-- Additional Swimming Fish -->
+    <div class="absolute bottom-64 right-40 animate-fish-swim-reverse opacity-20">
+      <img src="assets/images/catfish.png" alt="Swimming Fish" class="w-16 h-12 transform scale-x-[-1] rotate-6">
+    </div>
+  </div>
+
+  <!-- Hero Section - Underwater Portal -->
+  <section class="pt-32 pb-20 px-6 relative z-10">
+    <!-- Unified Ocean Depth Background -->
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#06b5d4]/6 to-[#06b5d4]/10"></div>
+
+    <!-- Floating Bubbles Trail -->
+    <div class="absolute top-10 left-1/2 transform -translate-x-1/2">
+      <div class="flex flex-col space-y-4 animate-bubble-trail">
+        <div class="w-4 h-4 bg-white/30 rounded-full animate-bubble-rise"></div>
+        <div class="w-3 h-3 bg-white/40 rounded-full animate-bubble-rise" style="animation-delay: 0.5s;"></div>
+        <div class="w-2 h-2 bg-white/50 rounded-full animate-bubble-rise" style="animation-delay: 1s;"></div>
+      </div>
+    </div>
+
+    <div class="max-w-5xl mx-auto text-center relative z-10">
+      <!-- Floating Badge -->
+      <div class="inline-flex items-center justify-center mb-8 px-6 py-3 bg-white/80 backdrop-blur-xl rounded-full border border-[#06b5d4]/20 shadow-lg animate-float-gentle">
+        <div class="w-3 h-3 bg-[#06b5d4] rounded-full animate-pulse mr-3"></div>
+        <span class="text-[#06b5d4] font-semibold text-sm">🇲🇦 Morocco's Premier Fishing Platform</span>
+        <div class="w-3 h-3 bg-[#06b5d4] rounded-full animate-pulse ml-3"></div>
       </div>
 
-      <h1 class="text-4xl md:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
-        Cast Your Line in<br>
-        <span class="text-transparent bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text">Morocco's Waters</span>
+      <!-- Main Title with Wave Effect -->
+      <h1 class="text-5xl md:text-7xl font-bold mb-8 tracking-tight relative">
+        <span class="block text-slate-900 mb-2 animate-wave-text">Dive Into</span>
+        <span class="block text-transparent bg-gradient-to-r from-[#06b5d4] via-cyan-500 to-blue-600 bg-clip-text animate-gradient-flow">
+          Morocco's Waters
+        </span>
+        <!-- Underwater Light Effect -->
+        <div class="absolute -inset-4 bg-gradient-to-r from-transparent via-[#06b5d4]/10 to-transparent blur-xl animate-underwater-light"></div>
       </h1>
-      <p class="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-        Join elite fishing tournaments across Morocco's pristine waters. 🎣
-        Connect with passionate anglers and compete for excellence.
+
+      <p class="text-xl md:text-2xl text-slate-700 mb-12 max-w-3xl mx-auto leading-relaxed animate-fade-in-up">
+        🌊 Immerse yourself in elite fishing tournaments across Morocco's pristine waters.
+        <br class="hidden md:block">
+        <span class="text-[#06b5d4] font-semibold">Connect, compete, and conquer the depths.</span>
       </p>
 
-      <!-- CTA Buttons -->
-      <div class="flex flex-col sm:flex-row gap-3 justify-center items-center" *ngIf="!(user | async)?.username">
+      <!-- Floating Action Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16" *ngIf="!(user | async)?.username">
         <a routerLink="/signup"
-           class="px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white text-sm font-medium rounded-md hover:from-blue-700 hover:to-cyan-700 transition-colors shadow-lg shadow-blue-500/25">
-          🌊 Join AFTAS
+           class="group px-8 py-4 bg-gradient-to-r from-[#06b5d4] to-cyan-600 text-white text-lg font-semibold rounded-2xl hover:from-cyan-600 hover:to-[#06b5d4] transition-all duration-300 shadow-xl shadow-[#06b5d4]/25 transform hover:scale-105 hover:-translate-y-1 animate-float-cta">
+          <span class="flex items-center">
+            🌊 Dive Into AFTAS
+            <i class="pi pi-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+          </span>
         </a>
         <a routerLink="/login"
-           class="px-6 py-3 text-blue-600 text-sm font-medium hover:text-blue-700 transition-colors border border-blue-200 rounded-md hover:bg-blue-50">
+           class="px-8 py-4 text-[#06b5d4] text-lg font-semibold hover:text-cyan-700 transition-all duration-300 border-2 border-[#06b5d4]/30 rounded-2xl hover:bg-[#06b5d4]/5 backdrop-blur-sm transform hover:scale-105 animate-float-cta" style="animation-delay: 0.2s;">
           Sign In
         </a>
       </div>
 
-      <!-- Welcome Back Message -->
-      <div class="max-w-xl mx-auto" *ngIf="(user | async)?.username">
-        <div class="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-6 border border-blue-100">
-          <div class="flex items-center justify-center mb-3">
-            <i class="pi pi-star-fill text-blue-600 mr-2"></i>
-            <h2 class="text-xl font-bold text-slate-900">
-              Welcome back, {{(user | async)?.username}}! 🎣
-            </h2>
+      <!-- Welcome Back - Ocean Portal -->
+      <div class="max-w-2xl mx-auto animate-fade-in-up" *ngIf="(user | async)?.username">
+        <div class="relative bg-white/90 backdrop-blur-xl rounded-3xl p-8 border border-[#06b5d4]/20 shadow-2xl overflow-hidden">
+          <!-- Underwater Glow Effect -->
+          <div class="absolute inset-0 bg-gradient-to-br from-[#06b5d4]/10 via-transparent to-cyan-500/10 animate-underwater-glow"></div>
+
+          <!-- Swimming Fish Decoration -->
+          <div class="absolute top-4 right-4 animate-fish-swim-welcome">
+            <img src="assets/images/speckled-fish.png" alt="Welcome Fish" class="w-12 h-12 opacity-30">
           </div>
-          <p class="text-slate-600 mb-5">Ready for your next fishing adventure?</p>
-          <div class="flex flex-col sm:flex-row gap-2 justify-center">
-            <a routerLink="/competition"
-               class="px-5 py-2.5 bg-gradient-to-r from-blue-600 to-cyan-600 text-white text-sm font-medium rounded-md hover:from-blue-700 hover:to-cyan-700 transition-colors">
-              🏆 View Tournaments
-            </a>
-            <a routerLink="/fish"
-               class="px-5 py-2.5 text-blue-600 text-sm font-medium hover:text-blue-700 transition-colors border border-blue-200 rounded-md hover:bg-blue-50"
-               *ngIf="(user | async)?.role !== 'NONE'">
-              🐟 Fish Species
-            </a>
+
+          <div class="relative z-10">
+            <div class="flex items-center justify-center mb-4">
+              <div class="w-4 h-4 bg-[#06b5d4] rounded-full animate-pulse mr-3"></div>
+              <h2 class="text-2xl font-bold text-slate-900">
+                Welcome back, {{(user | async)?.username}}! 🎣
+              </h2>
+              <div class="w-4 h-4 bg-[#06b5d4] rounded-full animate-pulse ml-3"></div>
+            </div>
+            <p class="text-slate-600 mb-6 text-lg">Ready to explore the depths of your next fishing adventure?</p>
+            <div class="flex flex-col sm:flex-row gap-3 justify-center">
+              <a routerLink="/competition"
+                 class="px-6 py-3 bg-gradient-to-r from-[#06b5d4] to-cyan-600 text-white font-semibold rounded-xl hover:from-cyan-600 hover:to-[#06b5d4] transition-all duration-300 shadow-lg transform hover:scale-105">
+                🏆 Explore Tournaments
+              </a>
+              <a routerLink="/fish"
+                 class="px-6 py-3 text-[#06b5d4] font-semibold hover:text-cyan-700 transition-all duration-300 border-2 border-[#06b5d4]/30 rounded-xl hover:bg-[#06b5d4]/5 transform hover:scale-105"
+                 *ngIf="(user | async)?.role !== 'NONE'">
+                🐟 Discover Species
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Features Section -->
-  <section class="py-16 px-6 bg-gradient-to-b from-white to-blue-50/30">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-12">
-        <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-3">
-          Everything you need for fishing excellence
+  <!-- Ocean Features Section -->
+  <section class="py-20 px-6 relative z-10">
+    <!-- Unified Ocean Depth Background -->
+    <div class="absolute inset-0 bg-gradient-to-b from-[#06b5d4]/10 via-[#06b5d4]/12 to-[#06b5d4]/14"></div>
+
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16 animate-fade-in-up">
+        <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+          <span class="text-transparent bg-gradient-to-r from-[#06b5d4] to-cyan-600 bg-clip-text">
+            Ocean-Deep Features
+          </span>
         </h2>
-        <p class="text-lg text-slate-600 max-w-2xl mx-auto">
-          Professional tournament management, angler community, and comprehensive tracking.
+        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+          Dive into professional tournament management with the power of Morocco's fishing community.
         </p>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-6">
-        <!-- Tournament Management -->
-        <div class="text-center p-6 bg-white rounded-xl border border-blue-100 hover:shadow-lg hover:shadow-blue-500/10 transition-all">
-          <div class="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-500 rounded-lg flex items-center justify-center mx-auto mb-4">
-            <i class="pi pi-trophy text-white text-lg"></i>
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Tournament Management Card -->
+        <div class="group relative bg-white/80 backdrop-blur-xl rounded-3xl p-8 border border-[#06b5d4]/20 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 animate-float-card overflow-hidden">
+          <!-- Underwater Light Effect -->
+          <div class="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-transparent to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+          <!-- Floating Trophy -->
+          <div class="relative z-10 w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <i class="pi pi-trophy text-white text-2xl animate-trophy-glow"></i>
           </div>
-          <h3 class="text-lg font-bold text-slate-900 mb-3">🏆 Tournaments</h3>
-          <p class="text-slate-600 leading-relaxed text-sm">
+
+          <h3 class="text-2xl font-bold text-slate-900 mb-4 group-hover:text-amber-600 transition-colors">🏆 Elite Tournaments</h3>
+          <p class="text-slate-600 leading-relaxed">
             Professional fishing competitions across Morocco's pristine waters.
-            Complete management from registration to results.
+            Complete management from registration to championship glory.
           </p>
+
+          <!-- Floating Particles -->
+          <div class="absolute top-4 right-4 w-2 h-2 bg-amber-400/60 rounded-full animate-particle-float"></div>
+          <div class="absolute bottom-8 left-6 w-1 h-1 bg-orange-400/60 rounded-full animate-particle-float" style="animation-delay: 1s;"></div>
         </div>
 
-        <!-- Angler Community -->
-        <div class="text-center p-6 bg-white rounded-xl border border-blue-100 hover:shadow-lg hover:shadow-blue-500/10 transition-all">
-          <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-lg flex items-center justify-center mx-auto mb-4">
-            <i class="pi pi-users text-white text-lg"></i>
+        <!-- Community Card -->
+        <div class="group relative bg-white/80 backdrop-blur-xl rounded-3xl p-8 border border-[#06b5d4]/20 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 animate-float-card overflow-hidden" style="animation-delay: 0.2s;">
+          <!-- Underwater Light Effect -->
+          <div class="absolute inset-0 bg-gradient-to-br from-[#06b5d4]/10 via-transparent to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+          <!-- Swimming Fish Icon -->
+          <div class="relative z-10 w-16 h-16 bg-gradient-to-br from-[#06b5d4] to-cyan-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <i class="pi pi-users text-white text-2xl animate-community-pulse"></i>
           </div>
-          <h3 class="text-lg font-bold text-slate-900 mb-3">🤝 Community</h3>
-          <p class="text-slate-600 leading-relaxed text-sm">
-            Connect with passionate fishing enthusiasts. Track achievements
-            and build your reputation among Morocco's finest anglers.
+
+          <h3 class="text-2xl font-bold text-slate-900 mb-4 group-hover:text-[#06b5d4] transition-colors">🤝 Ocean Community</h3>
+          <p class="text-slate-600 leading-relaxed">
+            Connect with passionate fishing enthusiasts. Build your reputation
+            among Morocco's finest anglers in our thriving community.
           </p>
+
+          <!-- Swimming Particles -->
+          <div class="absolute top-6 right-8 w-2 h-2 bg-[#06b5d4]/60 rounded-full animate-swim-particle"></div>
+          <div class="absolute bottom-12 left-4 w-1 h-1 bg-cyan-400/60 rounded-full animate-swim-particle" style="animation-delay: 1.5s;"></div>
         </div>
 
-        <!-- Live Tracking -->
-        <div class="text-center p-6 bg-white rounded-xl border border-blue-100 hover:shadow-lg hover:shadow-blue-500/10 transition-all">
-          <div class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center mx-auto mb-4">
-            <i class="pi pi-chart-line text-white text-lg"></i>
+        <!-- Live Tracking Card -->
+        <div class="group relative bg-white/80 backdrop-blur-xl rounded-3xl p-8 border border-[#06b5d4]/20 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 animate-float-card overflow-hidden" style="animation-delay: 0.4s;">
+          <!-- Underwater Light Effect -->
+          <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-teal-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+          <!-- Pulsing Chart Icon -->
+          <div class="relative z-10 w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <i class="pi pi-chart-line text-white text-2xl animate-chart-pulse"></i>
           </div>
-          <h3 class="text-lg font-bold text-slate-900 mb-3">📊 Live Results</h3>
-          <p class="text-slate-600 leading-relaxed text-sm">
+
+          <h3 class="text-2xl font-bold text-slate-900 mb-4 group-hover:text-emerald-600 transition-colors">📊 Live Ocean Data</h3>
+          <p class="text-slate-600 leading-relaxed">
             Real-time competition tracking with detailed leaderboards.
-            Follow the excitement as tournaments unfold across Morocco.
+            Follow the excitement as tournaments unfold across Morocco's waters.
           </p>
+
+          <!-- Data Particles -->
+          <div class="absolute top-8 right-6 w-2 h-2 bg-emerald-400/60 rounded-full animate-data-pulse"></div>
+          <div class="absolute bottom-6 left-8 w-1 h-1 bg-teal-400/60 rounded-full animate-data-pulse" style="animation-delay: 0.8s;"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Statistics Section -->
-  <section class="py-16 px-6 bg-white">
-    <div class="max-w-4xl mx-auto">
-      <div class="text-center mb-12">
-        <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-3">
-          Trusted by Morocco's fishing community 🇲🇦
+  <!-- Ocean Statistics - Underwater Dashboard -->
+  <section class="py-20 px-6 relative z-10">
+    <!-- Unified Ocean Depth Background -->
+    <div class="absolute inset-0 bg-gradient-to-b from-[#06b5d4]/14 via-[#06b5d4]/16 to-[#06b5d4]/18"></div>
+
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16 animate-fade-in-up">
+        <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+          Trusted by Morocco's
+          <span class="text-transparent bg-gradient-to-r from-[#06b5d4] to-cyan-600 bg-clip-text">Ocean Explorers</span> 🇲🇦
         </h2>
       </div>
 
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-        <div class="text-center p-4 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg border border-blue-100">
-          <div class="text-3xl font-bold text-blue-600 mb-1">150+</div>
-          <div class="text-slate-600 text-sm">🏆 Active Tournaments</div>
+        <div class="relative group bg-white/90 backdrop-blur-xl rounded-2xl p-6 border border-[#06b5d4]/20 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 animate-stat-float overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-br from-[#06b5d4]/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <div class="relative z-10 text-center">
+            <div class="text-4xl font-bold text-[#06b5d4] mb-2 animate-counter">150+</div>
+            <div class="text-slate-600 font-medium">🏆 Active Tournaments</div>
+          </div>
+          <div class="absolute top-2 right-2 w-2 h-2 bg-[#06b5d4]/40 rounded-full animate-ping"></div>
         </div>
-        <div class="text-center p-4 bg-gradient-to-br from-emerald-50 to-teal-50 rounded-lg border border-emerald-100">
-          <div class="text-3xl font-bold text-emerald-600 mb-1">2,500+</div>
-          <div class="text-slate-600 text-sm">🎣 Registered Anglers</div>
+
+        <div class="relative group bg-white/90 backdrop-blur-xl rounded-2xl p-6 border border-emerald-500/20 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 animate-stat-float overflow-hidden" style="animation-delay: 0.1s;">
+          <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-teal-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <div class="relative z-10 text-center">
+            <div class="text-4xl font-bold text-emerald-600 mb-2 animate-counter">2,500+</div>
+            <div class="text-slate-600 font-medium">🎣 Ocean Anglers</div>
+          </div>
+          <div class="absolute top-2 right-2 w-2 h-2 bg-emerald-500/40 rounded-full animate-ping" style="animation-delay: 0.5s;"></div>
         </div>
-        <div class="text-center p-4 bg-gradient-to-br from-amber-50 to-orange-50 rounded-lg border border-amber-100">
-          <div class="text-3xl font-bold text-amber-600 mb-1">15,000+</div>
-          <div class="text-slate-600 text-sm">🐟 Fish Caught</div>
+
+        <div class="relative group bg-white/90 backdrop-blur-xl rounded-2xl p-6 border border-amber-500/20 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 animate-stat-float overflow-hidden" style="animation-delay: 0.2s;">
+          <div class="absolute inset-0 bg-gradient-to-br from-amber-500/10 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <div class="relative z-10 text-center">
+            <div class="text-4xl font-bold text-amber-600 mb-2 animate-counter">15,000+</div>
+            <div class="text-slate-600 font-medium">🐟 Fish Caught</div>
+          </div>
+          <div class="absolute top-2 right-2 w-2 h-2 bg-amber-500/40 rounded-full animate-ping" style="animation-delay: 1s;"></div>
         </div>
-        <div class="text-center p-4 bg-gradient-to-br from-cyan-50 to-blue-50 rounded-lg border border-cyan-100">
-          <div class="text-3xl font-bold text-cyan-600 mb-1">25+</div>
-          <div class="text-slate-600 text-sm">🌊 Fishing Locations</div>
+
+        <div class="relative group bg-white/90 backdrop-blur-xl rounded-2xl p-6 border border-cyan-500/20 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 animate-stat-float overflow-hidden" style="animation-delay: 0.3s;">
+          <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <div class="relative z-10 text-center">
+            <div class="text-4xl font-bold text-cyan-600 mb-2 animate-counter">25+</div>
+            <div class="text-slate-600 font-medium">🌊 Ocean Locations</div>
+          </div>
+          <div class="absolute top-2 right-2 w-2 h-2 bg-cyan-500/40 rounded-full animate-ping" style="animation-delay: 1.5s;"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Morocco Waters Section -->
-  <section class="py-16 px-6 bg-gradient-to-b from-blue-50/30 to-cyan-50/30">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-3">
-        Discover Morocco's Waters 🌊
-      </h2>
-      <p class="text-lg text-slate-600 mb-10">
-        From the Atlantic coast to mountain lakes, explore the best fishing locations in Morocco.
-      </p>
+  <!-- Morocco Waters - Ocean Exploration -->
+  <section class="py-20 px-6 relative z-10">
+    <!-- Unified Ocean Depth Background -->
+    <div class="absolute inset-0 bg-gradient-to-b from-[#06b5d4]/18 via-[#06b5d4]/20 to-[#06b5d4]/22"></div>
 
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="p-5 bg-white rounded-xl border border-blue-100 hover:shadow-lg hover:shadow-blue-500/10 transition-all">
-          <div class="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center mx-auto mb-3">
-            <i class="pi pi-sun text-white text-sm"></i>
+    <div class="max-w-6xl mx-auto text-center">
+      <div class="mb-16 animate-fade-in-up">
+        <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+          Explore Morocco's
+          <span class="text-transparent bg-gradient-to-r from-[#06b5d4] to-cyan-600 bg-clip-text">Ocean Kingdom</span> 🌊
+        </h2>
+        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+          From the Atlantic's mighty depths to mountain lakes' tranquil surfaces,
+          discover the best fishing locations across Morocco's diverse waters.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Atlantic Coast -->
+        <div class="group relative bg-white/90 backdrop-blur-xl rounded-3xl p-8 border border-orange-500/20 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 animate-location-float overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-red-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+          <!-- Animated Sun Icon -->
+          <div class="relative z-10 w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <i class="pi pi-sun text-white text-2xl animate-sun-glow"></i>
           </div>
-          <h3 class="text-base font-bold text-slate-900 mb-2">🏖️ Atlantic Coast</h3>
-          <p class="text-slate-600 text-sm">World-class deep-sea fishing experiences</p>
+
+          <h3 class="text-2xl font-bold text-slate-900 mb-4 group-hover:text-orange-600 transition-colors">🏖️ Atlantic Coast</h3>
+          <p class="text-slate-600 leading-relaxed">
+            World-class deep-sea fishing experiences where the Atlantic meets Morocco's golden shores.
+          </p>
+
+          <!-- Ocean Waves -->
+          <div class="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-orange-400/30 to-red-400/30 animate-wave-gentle"></div>
         </div>
-        <div class="p-5 bg-white rounded-xl border border-blue-100 hover:shadow-lg hover:shadow-blue-500/10 transition-all">
-          <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center mx-auto mb-3">
-            <i class="pi pi-globe text-white text-sm"></i>
+
+        <!-- Mountain Lakes -->
+        <div class="group relative bg-white/90 backdrop-blur-xl rounded-3xl p-8 border border-[#06b5d4]/20 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 animate-location-float overflow-hidden" style="animation-delay: 0.2s;">
+          <div class="absolute inset-0 bg-gradient-to-br from-[#06b5d4]/10 via-transparent to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+          <!-- Mountain Icon -->
+          <div class="relative z-10 w-16 h-16 bg-gradient-to-br from-[#06b5d4] to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <i class="pi pi-globe text-white text-2xl animate-mountain-pulse"></i>
           </div>
-          <h3 class="text-base font-bold text-slate-900 mb-2">🏔️ Mountain Lakes</h3>
-          <p class="text-slate-600 text-sm">Pristine freshwater fishing adventures</p>
+
+          <h3 class="text-2xl font-bold text-slate-900 mb-4 group-hover:text-[#06b5d4] transition-colors">🏔️ Mountain Lakes</h3>
+          <p class="text-slate-600 leading-relaxed">
+            Pristine freshwater fishing adventures in Morocco's majestic mountain ranges.
+          </p>
+
+          <!-- Mountain Reflection -->
+          <div class="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-[#06b5d4]/30 to-indigo-400/30 animate-wave-gentle" style="animation-delay: 0.5s;"></div>
         </div>
-        <div class="p-5 bg-white rounded-xl border border-blue-100 hover:shadow-lg hover:shadow-blue-500/10 transition-all">
-          <div class="w-10 h-10 bg-gradient-to-br from-emerald-600 to-teal-600 rounded-lg flex items-center justify-center mx-auto mb-3">
-            <i class="pi pi-compass text-white text-sm"></i>
+
+        <!-- River Systems -->
+        <div class="group relative bg-white/90 backdrop-blur-xl rounded-3xl p-8 border border-emerald-500/20 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 animate-location-float overflow-hidden" style="animation-delay: 0.4s;">
+          <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-teal-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+          <!-- River Icon -->
+          <div class="relative z-10 w-16 h-16 bg-gradient-to-br from-emerald-600 to-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <i class="pi pi-compass text-white text-2xl animate-river-flow"></i>
           </div>
-          <h3 class="text-base font-bold text-slate-900 mb-2">🏞️ River Systems</h3>
-          <p class="text-slate-600 text-sm">Explore Morocco's flowing waters</p>
+
+          <h3 class="text-2xl font-bold text-slate-900 mb-4 group-hover:text-emerald-600 transition-colors">🏞️ River Systems</h3>
+          <p class="text-slate-600 leading-relaxed">
+            Explore Morocco's flowing waters where rivers carve through ancient landscapes.
+          </p>
+
+          <!-- River Flow -->
+          <div class="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-emerald-400/30 to-teal-400/30 animate-river-current"></div>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- Ocean Floor Footer Transition -->
+  <div class="h-32 bg-gradient-to-b from-[#06b5d4]/22 to-[#06b5d4]/30 relative overflow-hidden">
+    <!-- Animated Ocean Waves -->
+    <div class="absolute inset-0">
+      <svg class="absolute bottom-0 w-full h-16 animate-wave-flow" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M0,60 C300,120 900,0 1200,60 L1200,120 L0,120 Z" fill="rgba(6, 181, 212, 0.1)"></path>
+      </svg>
+      <svg class="absolute bottom-0 w-full h-20 animate-wave-flow-reverse" viewBox="0 0 1200 120" preserveAspectRatio="none" style="animation-delay: -2s;">
+        <path d="M0,80 C400,20 800,100 1200,40 L1200,120 L0,120 Z" fill="rgba(6, 181, 212, 0.15)"></path>
+      </svg>
+    </div>
+
+    <!-- Floating Ocean Debris -->
+    <div class="absolute bottom-8 left-20 animate-debris-float opacity-20">
+      <div class="w-3 h-3 bg-amber-400/60 rounded-full"></div>
+    </div>
+    <div class="absolute bottom-12 right-32 animate-debris-float opacity-15" style="animation-delay: 3s;">
+      <div class="w-2 h-2 bg-emerald-400/60 rounded-full"></div>
+    </div>
+  </div>
 </div>

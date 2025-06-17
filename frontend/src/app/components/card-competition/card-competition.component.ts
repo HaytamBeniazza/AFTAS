@@ -16,12 +16,13 @@ export class CardCompetitionComponent {
   member: Member = {} as Member;
   showDetails: boolean = false;
   showHunting: boolean = false;
-  openPodium = false; 
+  openPodium = false;
   openAddMember: boolean = false;
   leftTime: number = 0;
   leftTimeText: string = '';
   still24: boolean = false;
   ngOnInit(): void {
+    console.log('Competition data:', this.competition);
     this.competition.date = new Date(this.competition.date);
     let startDate = new Date(this.competition.date)
     startDate.setHours(Number(this.competition.startTime.toString().split(":")[0]), Number(this.competition.startTime.toString().split(":")[1]), Number(this.competition.startTime.toString().split(":")[2]))
@@ -50,6 +51,14 @@ export class CardCompetitionComponent {
     }
   }
   constructor(private competitionService: CompetitionService, private alertService: AlertService) { }
+
+  onShowDetails() {
+    this.showDetails = !this.showDetails;
+    if (this.showDetails) {
+      // Refresh competition data to get latest rankings
+      this.competitionService.reafresh(this.competition.code);
+    }
+  }
   onOpenDeleteDialog(competition: Competition) {
     this.alertService.showConfirmation(
       'Are you sure you want to delete this competition ' + this.competition.code + '?',

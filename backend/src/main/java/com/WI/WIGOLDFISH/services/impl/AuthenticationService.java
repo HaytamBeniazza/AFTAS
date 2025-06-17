@@ -4,6 +4,7 @@ package com.WI.WIGOLDFISH.services.impl;
 import com.WI.WIGOLDFISH.configs.JwtService;
 import com.WI.WIGOLDFISH.entities.member.DBUser;
 import com.WI.WIGOLDFISH.entities.user.UserDtoRsp;
+import com.WI.WIGOLDFISH.enums.IndentityDocumentType;
 import com.WI.WIGOLDFISH.enums.Role;
 import com.WI.WIGOLDFISH.exceptions.NotFoundEx;
 import com.WI.WIGOLDFISH.repositories.DBUserRepository;
@@ -19,6 +20,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import jakarta.annotation.PostConstruct;
 import java.time.LocalDate;
 
 @AllArgsConstructor
@@ -37,6 +39,32 @@ public class AuthenticationService implements AuthenticationServiceInterface {
 
 
     private  final AuthenticationManager authenticationManager;
+
+    /**
+     * Create default manager account if none exists
+     */
+    @PostConstruct
+    public void createDefaultManager() {
+        // Check if any manager exists
+        if (userRepository.findAllByRole(Role.MANAGER).isEmpty()) {
+            DBUser manager = new DBUser();
+            manager.setUsername("admin");
+            manager.setFamilyName("Administrator");
+            manager.setPassword(passwordEncoder.encode("admin123"));
+            manager.setRole(Role.MANAGER);
+            manager.setAccessionDate(LocalDate.now());
+            manager.setNationality("System");
+            manager.setIndentityDocumentType(IndentityDocumentType.CIN);
+            manager.setIndentityNumber("ADMIN001");
+            
+            userRepository.save(manager);
+            System.out.println("🎣 Default AFTAS Manager created:");
+            System.out.println("   Username: admin");
+            System.out.println("   Password: admin123");
+            System.out.println("   Role: MANAGER");
+        }
+    }
+
     @Override
     public AuthenticationResponse login(AuthenticationRequest authenticationRequest) {
         authenticationManager.authenticate(
@@ -55,11 +83,17 @@ public class AuthenticationService implements AuthenticationServiceInterface {
 
     @Override
     public AuthenticationResponse register(RegisterRequest registerRequest) {
+        // Check if username already exists
+        if (userRepository.findByUsername(registerRequest.getUsername()).isPresent()) {
+            throw new RuntimeException("Username already exists");
+        }
+
         DBUser user = modelMapper.map(registerRequest, DBUser.class);
-        user.setRole(Role.NONE);
-        user.setAccessionDate(LocalDate.now());
+        user.setRole(Role.NONE); // New users start with NONE role and need approval
+        user.setAccessionDate(registerRequest.getAccessionDate());
         user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
         userRepository.save(user);
+        
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)

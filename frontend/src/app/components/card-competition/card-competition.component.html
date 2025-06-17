@@ -1,60 +1,174 @@
-<div
-    class="w-full shadow my-5 relative bg-blue-200 rounded overflow-hidden transition-max-h duration-300 ease-in-out max-h-[1000px]"
-    >
-        <span (click)="onOpenDeleteDialog(competition)"
-        [class.opacity-50]="leftTimeText=='Finished'"
-    [class.pointer-events-none]="leftTimeText=='Finished'"
-            class="tracking-wider absolute left-1 bg-blue-400 top-1  pi pi-trash cursor-pointer px-2 text-sm rounded leading-loose mx-2 font-semibold">
-        </span>
-    <div class="lg:flex w-full">
-        <div class="bg-teal-600 rounded-l lg:w-2/12 py-4 block h-full shadow-inner">
-            <div class="text-center tracking-wide">
-                <div class="text-white font-bold text-4xl">{{ competition.date.getDate() }}</div>
-                <div class="text-white font-normal text-2xl">{{ competition.date.toLocaleString('en-US', { month:
-                    'short' }) }}</div>
-            </div>
-        </div>
-        <div class="w-full rounded-r  lg:w-11/12 xl:w-full px-1 bg-blue-100 py-5 lg:px-2 lg:py-2 tracking-wide">
-            <div class="flex flex-row lg:justify-start justify-center">
-                <div class="text-gray-700 font-medium text-sm text-center lg:text-left px-2">
-                    <i class="far fa-clock"></i> {{competition.startTime}}
-                </div>
-                <div class="text-gray-700 font-medium text-sm text-center lg:text-left px-2">
-                    <i class="far fa-clock"></i> {{competition.endTime}}
-                </div>
-                <div class="font-medium text-sm text-center lg:text-left px-2"
-                    [class.text-green-500]="leftTimeText.includes('to end')"
-                    [class.text-red-500]="leftTimeText.includes('to start')"
-                >
-                    <i class="far fa-clock"></i> {{leftTimeText}}
-                </div>
-            </div>
-            <div class="font-semibold text-gray-800 text-xl text-center lg:text-left px-2">
-                {{competition.code}}
-            </div>
+<div class="w-full my-6 relative bg-white/70 backdrop-blur-sm rounded-2xl overflow-hidden transition-all duration-300 ease-in-out shadow-lg hover:shadow-xl border border-white/20 group">
 
-            <div class="text-gray-600 font-medium text-sm pt-1 text-center lg:text-left px-2">
-                Location : {{competition.location}}, Number of Participants : {{competition.numberOfParticipants}}
-            </div>
-        </div>
-        <div *ngIf="leftTimeText!=='Finished'"
-            class="flex items-center w-full bg-blue-100 justify-center px-2 py-4">
-            <img (click)="showDetails=!showDetails" loading="lazy" width="30"  height="30" decoding="async" data-nimg="1" class="cursor-pointer" style="color:transparent" src="https://cdn-icons-png.flaticon.com/512/10047/10047996.png?ga=GA1.1.1577156254.1702208925">
-        </div>
-        <div *ngIf="leftTimeText=='Finished'"
-            class="flex items-center w-full bg-blue-100 justify-center px-2 py-4"
-            [class.cursor-pointer]="leftTimeText=='Finished'"
-            >
-            <img (click)="openPodium=!openPodium" loading="lazy" width="30"  height="30" decoding="async" data-nimg="1" class="cursor-pointer" style="color:transparent" src="https://cdn-icons-png.flaticon.com/512/274/274268.png?ga=GA1.1.1577156254.1702208925">
-        </div>
+  <!-- Delete Button -->
+  <button (click)="onOpenDeleteDialog(competition)"
+          [class.opacity-50]="leftTimeText=='Finished'"
+          [class.pointer-events-none]="leftTimeText=='Finished'"
+          class="absolute top-4 right-4 z-10 w-10 h-10 bg-red-500/90 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-110">
+    <i class="pi pi-trash text-sm"></i>
+  </button>
+
+  <div class="lg:flex w-full">
+
+    <!-- Date Section -->
+    <div class="bg-gradient-to-br from-blue-500 to-cyan-600 lg:w-2/12 py-6 px-4 flex flex-col items-center justify-center shadow-inner relative overflow-hidden">
+      <!-- Background Pattern -->
+      <div class="absolute inset-0 opacity-10">
+        <div class="absolute w-20 h-20 border border-white/30 rounded-full -top-10 -left-10"></div>
+        <div class="absolute w-16 h-16 border border-white/20 rounded-full -bottom-8 -right-8"></div>
+      </div>
+
+      <div class="text-center tracking-wide relative z-10">
+        <div class="text-white font-bold text-4xl mb-1">{{ competition.date.getDate() }}</div>
+        <div class="text-white/90 font-medium text-xl">{{ competition.date.toLocaleString('en-US', { month: 'short' }) }}</div>
+        <div class="text-white/80 font-normal text-sm mt-1">{{ competition.date.getFullYear() }}</div>
+      </div>
     </div>
-    <p-sidebar header="Competition Details" [(visible)]="showDetails" [style]="{width: '50vw'}">
-        <app-competition-details  [leftTimeText]="leftTimeText" [openAddMember]="openAddMember" [canAddMember]="leftTimeText.includes('to start') && !still24" (openAddMemberChange)="showHunting=!showHunting" (openAddMemberChange)="member=$event" [competition]="competition"></app-competition-details>
-    </p-sidebar>
-    <p-sidebar header="Hunting Details" [(visible)]="showHunting" [style]="{width: '50vw'}">
-        <app-hunting-details [leftTimeText]="leftTimeText" [member]="member" [competition]="competition"></app-hunting-details>
-    </p-sidebar>
-    <p-sidebar header="Podium" [(visible)]="openPodium" [style]="{width: '90vw'}">
-        <app-podium  [competition]="competition"></app-podium>
-    </p-sidebar>
+
+    <!-- Competition Details -->
+    <div class="flex-1 px-6 py-6 bg-gradient-to-r from-white/80 to-blue-50/80">
+
+      <!-- Time Information -->
+      <div class="flex flex-wrap gap-4 mb-4">
+        <div class="flex items-center text-slate-600 bg-white/60 px-3 py-1.5 rounded-full text-sm font-medium">
+          <i class="pi pi-clock mr-2 text-blue-500"></i>
+          {{competition.startTime}} - {{competition.endTime}}
+        </div>
+        <div class="flex items-center px-3 py-1.5 rounded-full text-sm font-medium"
+             [class.bg-emerald-100]="leftTimeText.includes('to end')"
+             [class.text-emerald-700]="leftTimeText.includes('to end')"
+             [class.bg-amber-100]="leftTimeText.includes('to start')"
+             [class.text-amber-700]="leftTimeText.includes('to start')"
+             [class.bg-slate-100]="leftTimeText=='Finished'"
+             [class.text-slate-600]="leftTimeText=='Finished'">
+          <i class="pi pi-calendar mr-2"></i>
+          {{leftTimeText}}
+        </div>
+      </div>
+
+      <!-- Competition Title -->
+      <div class="mb-3">
+        <h3 class="text-2xl font-bold text-slate-800 group-hover:text-blue-700 transition-colors duration-200">
+          {{competition.code}}
+        </h3>
+      </div>
+
+      <!-- Competition Info -->
+      <div class="space-y-2 text-slate-600">
+        <div class="flex items-center">
+          <i class="pi pi-map-marker text-blue-500 mr-3 w-4"></i>
+          <span class="font-medium">{{competition.location}}</span>
+        </div>
+        <div class="flex items-center">
+          <i class="pi pi-users text-blue-500 mr-3 w-4"></i>
+          <span class="font-medium">{{competition.numberOfParticipants}} Participants</span>
+        </div>
+        <div class="flex items-center">
+          <i class="pi pi-dollar text-blue-500 mr-3 w-4"></i>
+          <span class="font-medium">${{competition.amount}} Entry Fee</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="lg:w-24 flex lg:flex-col flex-row items-center justify-center gap-3 p-4 bg-gradient-to-b from-slate-50/80 to-white/80">
+
+             <!-- Details Button (for ongoing/upcoming competitions) -->
+       <button *ngIf="leftTimeText!=='Finished'"
+               (click)="onShowDetails()"
+              class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white rounded-xl flex items-center justify-center transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-110 group">
+        <i class="pi pi-info-circle text-lg group-hover:scale-110 transition-transform"></i>
+        <div class="absolute -left-20 bg-slate-800 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+          View Details
+        </div>
+      </button>
+
+      <!-- Podium Button (for finished competitions) -->
+      <button *ngIf="leftTimeText=='Finished'"
+              (click)="openPodium=!openPodium"
+              class="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white rounded-xl flex items-center justify-center transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-110 group">
+        <i class="pi pi-trophy text-lg group-hover:scale-110 transition-transform"></i>
+        <div class="absolute -left-16 bg-slate-800 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+          View Podium
+        </div>
+      </button>
+
+      <!-- Status Indicator -->
+      <div class="w-3 h-3 rounded-full"
+           [class.bg-emerald-400]="leftTimeText.includes('to end')"
+           [class.bg-amber-400]="leftTimeText.includes('to start')"
+           [class.bg-slate-400]="leftTimeText=='Finished'"
+           [class.animate-pulse]="leftTimeText.includes('to end')">
+      </div>
+    </div>
+  </div>
+
+  <!-- Competition Details Sidebar -->
+  <p-sidebar header="Competition Details"
+             [(visible)]="showDetails"
+             [style]="{width: '50vw'}"
+             styleClass="custom-sidebar">
+    <app-competition-details
+      [leftTimeText]="leftTimeText"
+      [openAddMember]="openAddMember"
+      [canAddMember]="leftTimeText.includes('to start') && !still24"
+      (openAddMemberChange)="showHunting=!showHunting"
+      (openAddMemberChange)="member=$event"
+      [competition]="competition">
+    </app-competition-details>
+  </p-sidebar>
+
+  <!-- Hunting Details Sidebar -->
+  <p-sidebar header="Hunting Details"
+             [(visible)]="showHunting"
+             [style]="{width: '50vw'}"
+             styleClass="custom-sidebar">
+    <app-hunting-details
+      [leftTimeText]="leftTimeText"
+      [member]="member"
+      [competition]="competition">
+    </app-hunting-details>
+  </p-sidebar>
+
+  <!-- Podium Sidebar -->
+  <p-sidebar header="Competition Podium"
+             [(visible)]="openPodium"
+             [style]="{width: '90vw'}"
+             styleClass="custom-sidebar">
+    <app-podium [competition]="competition"></app-podium>
+  </p-sidebar>
 </div>
+
+<!-- Custom Sidebar Styles -->
+<style>
+:host ::ng-deep .custom-sidebar .p-sidebar {
+  border-radius: 1rem 0 0 1rem;
+  box-shadow: -10px 0 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+:host ::ng-deep .custom-sidebar .p-sidebar-header {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+  padding: 1.5rem 2rem;
+}
+
+:host ::ng-deep .custom-sidebar .p-sidebar-content {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+:host ::ng-deep .custom-sidebar .p-sidebar-close {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.75rem;
+  background: rgba(148, 163, 184, 0.1);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  color: #64748b;
+  transition: all 0.2s;
+}
+
+:host ::ng-deep .custom-sidebar .p-sidebar-close:hover {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+</style>

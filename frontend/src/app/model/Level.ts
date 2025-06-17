@@ -1,5 +1,5 @@
 export type Level = {
-    code : string;
+    code : number;
     description : string;
     points : number;
 }

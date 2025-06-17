@@ -1,53 +1,218 @@
-<p-dialog header="Competition Form" [(visible)]="visible" [style]="{width: '50vw'}">
-    <form [formGroup]="competitionForm" (ngSubmit)="onSubmit()">
-        <div class="mt-2">
-            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
-            <input type="date" formControlName="date"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 ">
+<p-dialog
+  header="Create New Competition"
+  [(visible)]="visible"
+  [style]="{width: '90vw', maxWidth: '600px'}"
+  [modal]="true"
+  [closable]="true"
+  [draggable]="false"
+  [resizable]="false"
+  styleClass="custom-dialog">
+
+    <!-- Dialog Content -->
+  <div class="bg-gradient-to-br from-slate-50 to-blue-50 p-4 rounded-xl">
+
+    <!-- Header Section -->
+    <div class="text-center mb-6">
+      <div class="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-full mb-3 shadow-lg">
+        <i class="pi pi-trophy text-white text-lg"></i>
+      </div>
+      <h2 class="text-xl font-bold bg-gradient-to-r from-slate-800 to-blue-800 bg-clip-text text-transparent mb-1">
+        New Fishing Competition
+      </h2>
+      <p class="text-slate-600 text-sm">Fill in the details to create a new competition</p>
+    </div>
+
+    <!-- Form -->
+    <form [formGroup]="competitionForm" (ngSubmit)="onSubmit()" class="space-y-4">
+
+      <!-- Date and Time Section -->
+      <div class="bg-white/70 backdrop-blur-sm rounded-xl p-4 border border-white/20 shadow-sm">
+        <h3 class="text-base font-semibold text-slate-800 mb-3 flex items-center">
+          <i class="pi pi-calendar mr-2 text-blue-600"></i>
+          Schedule Details
+        </h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <!-- Date -->
+          <div class="space-y-2">
+            <label class="block text-sm font-medium text-slate-700">
+              Competition Date <span class="text-red-500">*</span>
+            </label>
+                        <input
+              type="date"
+              formControlName="date"
+              class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-slate-900">
             <small *ngIf="competitionForm.get('date')?.hasError('invalidDate') && competitionForm.get('date')?.touched"
-                class="text-red-500">
-                Date must be in the future and not more than 3 months from now
+                   class="text-red-500 text-xs flex items-center">
+              <i class="pi pi-exclamation-triangle mr-1"></i>
+              Date must be in the future and not more than 3 months from now
             </small>
-        </div>
-        <div class="mt-2">
-            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Start Time</label>
-            <input type="time" formControlName="startTime"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 ">
-            <small
-                *ngIf="competitionForm.get('startTime')?.hasError('invalidStartTime') && competitionForm.get('startTime')?.touched"
-                class="text-red-500">
-                Start time must be after 8:00 AM
+          </div>
+
+          <!-- Start Time -->
+          <div class="space-y-2">
+            <label class="block text-sm font-medium text-slate-700">
+              Start Time <span class="text-red-500">*</span>
+            </label>
+                        <input
+              type="time"
+              formControlName="startTime"
+              class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-slate-900">
+            <small *ngIf="competitionForm.get('startTime')?.hasError('invalidStartTime') && competitionForm.get('startTime')?.touched"
+                   class="text-red-500 text-xs flex items-center">
+              <i class="pi pi-exclamation-triangle mr-1"></i>
+              Start time must be after 8:00 AM
             </small>
-        </div>
-        <div class="mt-2">
-            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">End Time</label>
-            <input type="time" formControlName="endTime"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 ">
+          </div>
+
+          <!-- End Time -->
+          <div class="space-y-2">
+            <label class="block text-sm font-medium text-slate-700">
+              End Time <span class="text-red-500">*</span>
+            </label>
+                        <input
+              type="time"
+              formControlName="endTime"
+              class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-slate-900">
             <small *ngIf="competitionForm.get('endTime')?.hasError('invalidEndTime') && competitionForm.get('endTime')?.touched"
-                class="text-red-500">
-                End time must be after start time and before 8:00 PM
+                   class="text-red-500 text-xs flex items-center">
+              <i class="pi pi-exclamation-triangle mr-1"></i>
+              End time must be after start time and before 8:00 PM
             </small>
+          </div>
         </div>
-        <div class="mt-2">
-            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number Of Participants</label>
-            <input type="number" formControlName="numberOfParticipants" min="1"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 ">
+      </div>
+
+      <!-- Competition Details Section -->
+      <div class="bg-white/70 backdrop-blur-sm rounded-xl p-4 border border-white/20 shadow-sm">
+        <h3 class="text-base font-semibold text-slate-800 mb-3 flex items-center">
+          <i class="pi pi-info-circle mr-2 text-blue-600"></i>
+          Competition Details
+        </h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Location -->
+          <div class="space-y-2">
+            <label class="block text-sm font-medium text-slate-700">
+              Location <span class="text-red-500">*</span>
+            </label>
+            <div class="relative">
+              <i class="pi pi-map-marker absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400"></i>
+                            <input
+                type="text"
+                formControlName="location"
+                placeholder="e.g., Lake Superior, Michigan"
+                class="w-full pl-10 pr-4 py-2 bg-white border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-slate-900">
+            </div>
+          </div>
+
+          <!-- Number of Participants -->
+          <div class="space-y-2">
+            <label class="block text-sm font-medium text-slate-700">
+              Max Participants <span class="text-red-500">*</span>
+            </label>
+            <div class="relative">
+              <i class="pi pi-users absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400"></i>
+                            <input
+                type="number"
+                formControlName="numberOfParticipants"
+                min="1"
+                placeholder="e.g., 50"
+                class="w-full pl-10 pr-4 py-2 bg-white border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-slate-900">
+            </div>
+          </div>
         </div>
-        <div class="mt-2">
-            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
-            <input type="text" formControlName="location"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 ">
+
+        <!-- Amount -->
+        <div class="mt-4 space-y-2">
+          <label class="block text-sm font-medium text-slate-700">
+            Entry Fee <span class="text-red-500">*</span>
+          </label>
+          <div class="relative">
+            <i class="pi pi-dollar absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400"></i>
+                        <input
+              type="number"
+              formControlName="amount"
+              min="1"
+              placeholder="e.g., 25"
+              class="w-full pl-10 pr-4 py-2 bg-white border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-slate-900">
+          </div>
+          <p class="text-xs text-slate-500">Entry fee in USD per participant</p>
         </div>
-        <div class="mt-2">
-            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Amount</label>
-            <input type="number" formControlName="amount" min="1"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 ">
-        </div>
-        <button type="submit"
-            class="text-white mt-2 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
-            [class.bg-teal-700]="!competitionForm.invalid" [class.bg-gray-300]="competitionForm.invalid"
-            [disabled]="competitionForm.invalid">
-            Submit
+      </div>
+
+      <!-- Form Actions -->
+      <div class="flex flex-col sm:flex-row gap-3 pt-2">
+        <button
+          type="button"
+          (click)="visible = false"
+          class="flex-1 px-6 py-3 bg-slate-100 text-slate-700 font-medium rounded-xl hover:bg-slate-200 transition-all duration-200 border border-slate-200">
+          <i class="pi pi-times mr-2"></i>
+          Cancel
         </button>
+        <button
+          type="submit"
+          class="flex-1 px-6 py-3 font-medium rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center justify-center"
+          [class]="competitionForm.invalid ?
+            'bg-slate-300 text-slate-500 cursor-not-allowed' :
+            'bg-gradient-to-r from-blue-500 to-cyan-600 text-white hover:from-blue-600 hover:to-cyan-700'"
+          [disabled]="competitionForm.invalid">
+          <i class="pi pi-check mr-2"></i>
+          Create Competition
+        </button>
+      </div>
+
+      <!-- Form Status -->
+      <div *ngIf="competitionForm.invalid && competitionForm.touched"
+           class="bg-red-50 border border-red-200 rounded-xl p-4 mt-4">
+        <div class="flex items-center text-red-700">
+          <i class="pi pi-exclamation-triangle mr-2"></i>
+          <span class="font-medium">Please fix the errors above to continue</span>
+        </div>
+      </div>
     </form>
+  </div>
 </p-dialog>
+
+<!-- Custom Dialog Styles -->
+<style>
+:host ::ng-deep .custom-dialog .p-dialog {
+  border-radius: 1.5rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+:host ::ng-deep .custom-dialog .p-dialog-header {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border-radius: 1.5rem 1.5rem 0 0;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+  padding: 1.5rem 2rem;
+}
+
+:host ::ng-deep .custom-dialog .p-dialog-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+:host ::ng-deep .custom-dialog .p-dialog-content {
+  padding: 0;
+  border-radius: 0 0 1.5rem 1.5rem;
+}
+
+:host ::ng-deep .custom-dialog .p-dialog-header-close {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.75rem;
+  background: rgba(148, 163, 184, 0.1);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  color: #64748b;
+  transition: all 0.2s;
+}
+
+:host ::ng-deep .custom-dialog .p-dialog-header-close:hover {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+</style>

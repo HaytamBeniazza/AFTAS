@@ -71,12 +71,6 @@ export class LoginFormComponent implements OnInit, OnDestroy {
 
       const loginSub = this.authService.login(username, password).subscribe({
         next: (token: any) => {
-          // Store the token
-          localStorage.setItem('token', token.token);
-
-          // Get user by token
-          this.authService.getUserByToken();
-
           // Handle remember me
           if (this.rememberMe) {
             this.saveCredentials(username);
@@ -84,18 +78,18 @@ export class LoginFormComponent implements OnInit, OnDestroy {
             this.clearSavedCredentials();
           }
 
-          // Add success animation delay
+          // Wait for user data to be loaded, then navigate based on role
           setTimeout(() => {
             this.isLoading = false;
             this.closeDialog();
-            this.router.navigate(['/dashboard']);
-          }, 800);
+            this.navigateBasedOnRole();
+          }, 1000); // Increased timeout to ensure user data is loaded
         },
         error: (error: any) => {
+          // Error is handled in auth service with proper messages
           // Add error animation delay
           setTimeout(() => {
             this.isLoading = false;
-            this.errorMessage = this.getErrorMessage(error);
             this.shakeForm();
           }, 800);
         }
@@ -219,5 +213,35 @@ export class LoginFormComponent implements OnInit, OnDestroy {
     // This method can be used to switch to register form
     // For now, navigate to register route
     this.router.navigate(['/signup']);
+  }
+
+  private navigateBasedOnRole(): void {
+    const user = this.authService.authenticatedUser.value;
+
+    if (!user || !user.role) {
+      // If user data not loaded yet, wait a bit more
+      setTimeout(() => this.navigateBasedOnRole(), 500);
+      return;
+    }
+
+    switch (user.role) {
+      case 'NONE':
+        // User needs approval
+        this.router.navigate(['/pending-approval']);
+        break;
+      case 'MANAGER':
+        // Manager can access member management
+        this.router.navigate(['/managemember']);
+        break;
+      case 'ADHERENT':
+      case 'JURY':
+        // Regular users go to competitions
+        this.router.navigate(['/competition']);
+        break;
+      default:
+        // Fallback to homepage
+        this.router.navigate(['/']);
+        break;
+    }
   }
 }

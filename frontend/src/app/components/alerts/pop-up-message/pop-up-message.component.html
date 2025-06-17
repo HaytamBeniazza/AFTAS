@@ -1,13 +1,93 @@
-<p-dialog *ngIf="!alertProps.needConfirmation" header="Pop Up Message" [(visible)]="alertProps.visible" [style]="{width: '50vw'}">
-    <div class="flex flex-col justify-center items-center">
-        <div class="text-2xl font-bold text-gray-900 dark:text-white">
-            {{alertProps.message}}
-        </div>
-        <div class="flex justify-center items-center">
-            <button type="button" (click)="close(false)"
-                class="text-white mt-2 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center bg-teal-500">
-                OK
-            </button>
-        </div>
+<p-dialog
+  *ngIf="!alertProps.needConfirmation"
+  header="AFTAS Notification"
+  [(visible)]="alertProps.visible"
+  [style]="{width: '90vw', maxWidth: '500px'}"
+  [modal]="true"
+  [closable]="true"
+  [draggable]="false"
+  [resizable]="false"
+  styleClass="custom-dialog"
+>
+  <div class="flex flex-col justify-center items-center p-4">
+    <!-- Message Icon -->
+    <div class="mb-4">
+      <div *ngIf="isSuccessMessage()" class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
+        <i class="pi pi-check text-3xl text-green-600"></i>
+      </div>
+      <div *ngIf="isErrorMessage()" class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center">
+        <i class="pi pi-times text-3xl text-red-600"></i>
+      </div>
+      <div *ngIf="isInfoMessage()" class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
+        <i class="pi pi-info-circle text-3xl text-blue-600"></i>
+      </div>
     </div>
+
+    <!-- Message Text -->
+    <div class="text-center mb-6">
+      <div class="text-lg font-semibold text-gray-900 mb-2" [innerHTML]="getMessageTitle()"></div>
+      <div class="text-sm text-gray-600" [innerHTML]="getMessageBody()"></div>
+    </div>
+
+    <!-- Action Button -->
+    <div class="flex justify-center items-center">
+      <button
+        type="button"
+        (click)="close(false)"
+        [class]="getButtonClasses()"
+        class="font-medium rounded-lg text-sm px-6 py-3 text-center transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-opacity-50"
+      >
+        <i class="pi pi-check mr-2"></i>
+        Got it!
+      </button>
+    </div>
+  </div>
+</p-dialog>
+
+<!-- Confirmation Dialog -->
+<p-dialog
+  *ngIf="alertProps.needConfirmation"
+  header="Confirm Action"
+  [(visible)]="alertProps.visible"
+  [style]="{width: '90vw', maxWidth: '450px'}"
+  [modal]="true"
+  [closable]="false"
+  [draggable]="false"
+  [resizable]="false"
+  styleClass="custom-dialog"
+>
+  <div class="flex flex-col justify-center items-center p-4">
+    <!-- Warning Icon -->
+    <div class="mb-4">
+      <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center">
+        <i class="pi pi-exclamation-triangle text-3xl text-yellow-600"></i>
+      </div>
+    </div>
+
+    <!-- Confirmation Message -->
+    <div class="text-center mb-6">
+      <div class="text-lg font-semibold text-gray-900 mb-2">Are you sure?</div>
+      <div class="text-sm text-gray-600">{{alertProps.message}}</div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="flex justify-center items-center space-x-3">
+      <button
+        type="button"
+        (click)="close(false)"
+        class="bg-gray-500 hover:bg-gray-600 text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-gray-300"
+      >
+        <i class="pi pi-times mr-2"></i>
+        Cancel
+      </button>
+      <button
+        type="button"
+        (click)="confirm()"
+        class="bg-red-500 hover:bg-red-600 text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-red-300"
+      >
+        <i class="pi pi-check mr-2"></i>
+        Confirm
+      </button>
+    </div>
+  </div>
 </p-dialog>

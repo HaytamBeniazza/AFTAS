@@ -1,6 +1,7 @@
 package com.WI.WIGOLDFISH.controllers;
 
 import com.WI.WIGOLDFISH.entities.member.MemberDtoReq;
+import com.WI.WIGOLDFISH.enums.Role;
 import com.WI.WIGOLDFISH.services.impl.MemberServiceImpl;
 import com.WI.WIGOLDFISH.services.interfaces.MemberService;
 import jakarta.validation.Valid;
@@ -37,6 +38,33 @@ public class MemberController {
     @PreAuthorize("hasAnyAuthority('ROLE_MANAGER')")
     public ResponseEntity<?> getMembers() {
         return ResponseEntity.ok(memberServiceImpl.findAll());
+    }
+
+    @GetMapping("/pending")
+    @PreAuthorize("hasAnyAuthority('ROLE_MANAGER')")
+    public ResponseEntity<?> getPendingMembers() {
+        Map<String, Object> response = new HashMap<>();
+        response.put("data", memberServiceImpl.findPendingMembers());
+        response.put("message", "Pending members retrieved successfully");
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/{id}/approve")
+    @PreAuthorize("hasAnyAuthority('ROLE_MANAGER')")
+    public ResponseEntity<?> approveMember(@PathVariable UUID id, @RequestParam Role role) {
+        memberServiceImpl.approveMember(id, role);
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "Member approved successfully with role: " + role.name());
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/{id}/reject")
+    @PreAuthorize("hasAnyAuthority('ROLE_MANAGER')")
+    public ResponseEntity<?> rejectMember(@PathVariable UUID id) {
+        memberServiceImpl.delete(id);
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "Member application rejected and removed");
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/{id}")

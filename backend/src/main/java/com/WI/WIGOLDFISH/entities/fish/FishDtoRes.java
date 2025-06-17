@@ -16,6 +16,7 @@ import java.util.List;
 public class FishDtoRes {
     private  String  name;
     private double averageWeight;
+    private String imageUrl;
     private LevelDtoReq level;
     private List<HuntingDtoReq> huntingList;
 }

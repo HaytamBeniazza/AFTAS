@@ -1,0 +1,144 @@
+<div class="fish-list-container p-6">
+  <!-- Header -->
+  <div class="flex justify-between items-center mb-6">
+    <div>
+      <h2 class="text-3xl font-bold text-gray-800 flex items-center">
+        🐟 All Fish Species
+      </h2>
+      <p class="text-gray-600 mt-2">{{ totalElements }} species found</p>
+    </div>
+
+    <!-- Page Size Selector -->
+    <div class="flex items-center space-x-4">
+      <label class="text-sm font-medium text-gray-700">Show:</label>
+      <select
+        (change)="onPageSizeChange($event)"
+        [value]="pageSize"
+        class="border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+      </select>
+      <span class="text-sm text-gray-700">per page</span>
+    </div>
+  </div>
+
+  <!-- Loading Indicator -->
+  <div *ngIf="loading" class="flex justify-center items-center py-12">
+    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+    <span class="ml-3 text-gray-600">Loading fish species...</span>
+  </div>
+
+  <!-- Fish Grid -->
+  <div *ngIf="!loading" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
+    <div
+      *ngFor="let fish of fishData.content; let i = index"
+      class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 overflow-hidden border border-gray-200">
+
+      <!-- Fish Image -->
+      <div class="relative h-48 bg-gradient-to-br from-blue-100 to-blue-200">
+        <img
+          *ngIf="fish.imageUrl"
+          [src]="fish.imageUrl"
+          [alt]="fish.name"
+          class="w-full h-full object-cover"
+          (error)="onImageError($event)"
+          loading="lazy">
+        <div
+          *ngIf="!fish.imageUrl"
+          class="w-full h-full flex items-center justify-center text-6xl text-blue-400">
+          🐟
+        </div>
+        <!-- Fish Number Badge - Overlay on image -->
+        <div class="absolute top-2 left-2">
+          <span class="inline-block bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded-full">
+            #{{ (currentPage * pageSize) + i + 1 }}
+          </span>
+        </div>
+        <!-- Delete Button - Overlay on image -->
+        <button
+          (click)="deleteFish(fish.name)"
+          class="absolute top-2 right-2 bg-red-500 bg-opacity-80 hover:bg-red-600 text-white p-1 rounded-full transition-colors"
+          title="Delete fish">
+          🗑️
+        </button>
+      </div>
+
+      <!-- Fish Content -->
+      <div class="p-4">
+        <!-- Fish Header -->
+        <div class="mb-3">
+          <h3 class="font-semibold text-gray-800 text-lg mb-1 line-clamp-2">
+            🐠 {{ fish.name }}
+          </h3>
+        </div>
+
+      <!-- Fish Details -->
+      <div class="space-y-2 text-sm">
+        <div class="flex items-center text-gray-600">
+          <span class="mr-2">⚖️</span>
+          <span><strong>Weight:</strong> {{ fish.averageWeight | number:'1.1-2' }} kg</span>
+        </div>
+
+        <div class="flex items-center text-gray-600">
+          <span class="mr-2">🏆</span>
+          <span><strong>Level:</strong> {{ fish.level?.description }}</span>
+        </div>
+
+        <div class="flex items-center text-gray-600">
+          <span class="mr-2">⭐</span>
+          <span><strong>Points:</strong> {{ fish.level?.points }}</span>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="!loading && fishData.content.length === 0" class="text-center py-12">
+    <div class="text-6xl mb-4">🐟</div>
+    <h3 class="text-xl font-medium text-gray-700 mb-2">No fish species found</h3>
+    <p class="text-gray-500">Try importing fish species or adjusting your search criteria.</p>
+  </div>
+
+  <!-- Pagination Controls -->
+  <div *ngIf="!loading && totalPages > 1" class="flex flex-col sm:flex-row justify-between items-center mt-8 space-y-4 sm:space-y-0">
+
+    <!-- Page Info -->
+    <div class="text-sm text-gray-700">
+      Showing {{ (currentPage * pageSize) + 1 }} to {{ Math.min((currentPage + 1) * pageSize, totalElements) }}
+      of {{ totalElements }} results
+    </div>
+
+    <!-- Pagination Buttons -->
+    <div class="flex items-center space-x-2">
+
+      <!-- Previous Button -->
+      <button
+        (click)="onPageChange(currentPage - 1)"
+        [disabled]="currentPage === 0"
+        class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+        ← Previous
+      </button>
+
+      <!-- Page Numbers -->
+      <button
+        *ngFor="let page of getPageNumbers()"
+        (click)="onPageChange(page)"
+        [class]="page === currentPage ?
+          'px-3 py-2 text-sm font-medium text-white bg-blue-600 border border-blue-600 rounded-md' :
+          'px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50'">
+        {{ page + 1 }}
+      </button>
+
+      <!-- Next Button -->
+      <button
+        (click)="onPageChange(currentPage + 1)"
+        [disabled]="currentPage >= totalPages - 1"
+        class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+        Next →
+      </button>
+    </div>
+  </div>
+</div>

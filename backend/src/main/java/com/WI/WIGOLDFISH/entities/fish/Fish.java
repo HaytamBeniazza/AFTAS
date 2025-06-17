@@ -17,6 +17,7 @@ public class Fish {
     @Id
     private  String  name;
     private double averageWeight;
+    private String imageUrl;
     @ManyToOne
     private Level level;
     @OneToMany(mappedBy = "fish", fetch = FetchType.LAZY)

@@ -7,13 +7,19 @@ import { throwError } from 'rxjs';
 export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     const token = localStorage.getItem('token');
-    if (token) {
+
+    // Don't add Authorization header to auth endpoints (login, signup)
+    const isAuthEndpoint = req.url.includes('/api/v1/auth/login') ||
+                          req.url.includes('/api/v1/auth/signup');
+
+    if (token && !isAuthEndpoint) {
       req = req.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`
         }
       });
     }
+
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 403) {

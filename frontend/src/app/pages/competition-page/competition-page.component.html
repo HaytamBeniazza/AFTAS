@@ -1,5 +1,108 @@
-<app-filter></app-filter>
-<span (click)="visible=!visible" class="pi z-50 pi-plus text-2xl p-3 fixed bottom-10 right-10 cursor-pointer my-3 bg-teal-500 rounded"></span>
-<app-card-competition *ngFor="let competition of competitions | async" [competition]="competition"></app-card-competition>
-<app-pagination [pagination]="pagination"></app-pagination>
-<app-competition-form [visible]="visible"></app-competition-form>
+<!-- Ocean Theme Background with Floating Particles -->
+<div class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50 relative overflow-hidden">
+  <!-- Floating Particles Background -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute w-2 h-2 bg-blue-200/30 rounded-full animate-float" style="top: 10%; left: 10%; animation-delay: 0s;"></div>
+    <div class="absolute w-1 h-1 bg-cyan-300/40 rounded-full animate-float" style="top: 20%; left: 80%; animation-delay: 2s;"></div>
+    <div class="absolute w-3 h-3 bg-blue-100/50 rounded-full animate-float" style="top: 60%; left: 20%; animation-delay: 4s;"></div>
+    <div class="absolute w-1.5 h-1.5 bg-cyan-200/35 rounded-full animate-float" style="top: 80%; left: 70%; animation-delay: 1s;"></div>
+    <div class="absolute w-2.5 h-2.5 bg-blue-300/25 rounded-full animate-float" style="top: 30%; left: 60%; animation-delay: 3s;"></div>
+    <div class="absolute w-1 h-1 bg-cyan-400/30 rounded-full animate-float" style="top: 70%; left: 90%; animation-delay: 5s;"></div>
+    <div class="absolute w-2 h-2 bg-blue-200/40 rounded-full animate-float" style="top: 40%; left: 30%; animation-delay: 1.5s;"></div>
+    <div class="absolute w-1.5 h-1.5 bg-cyan-300/35 rounded-full animate-float" style="top: 90%; left: 40%; animation-delay: 2.5s;"></div>
+  </div>
+
+  <!-- Main Content Container -->
+  <div class="relative z-10 container mx-auto px-4 py-8">
+
+    <!-- Header Section -->
+    <div class="text-center mb-12">
+      <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-full mb-6 shadow-lg">
+        <i class="pi pi-trophy text-white text-3xl"></i>
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-slate-800 via-blue-800 to-cyan-800 bg-clip-text text-transparent mb-4">
+        Competition Management
+      </h1>
+      <p class="text-slate-600 text-lg max-w-2xl mx-auto leading-relaxed">
+        Organize and manage fishing competitions with ease. Create new competitions, track participants, and monitor results.
+      </p>
+
+      <!-- Competition Stats -->
+      <div class="flex flex-wrap justify-center gap-6 mt-8">
+        <div class="bg-white/70 backdrop-blur-sm rounded-2xl px-6 py-4 shadow-lg border border-white/20">
+          <div class="text-2xl font-bold text-blue-600">{{(competitions | async)?.length || 0}}</div>
+          <div class="text-sm text-slate-600 font-medium">Total Competitions</div>
+        </div>
+        <div class="bg-white/70 backdrop-blur-sm rounded-2xl px-6 py-4 shadow-lg border border-white/20">
+          <div class="text-2xl font-bold text-emerald-600">Active</div>
+          <div class="text-sm text-slate-600 font-medium">Status</div>
+        </div>
+        <div class="bg-white/70 backdrop-blur-sm rounded-2xl px-6 py-4 shadow-lg border border-white/20">
+          <div class="text-2xl font-bold text-amber-600">{{pagination.totalElements || 0}}</div>
+          <div class="text-sm text-slate-600 font-medium">Total Records</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter Section -->
+    <div class="mb-8">
+      <div class="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/20">
+        <app-filter></app-filter>
+      </div>
+    </div>
+
+    <!-- Competitions Grid -->
+    <div class="space-y-6 mb-8">
+      <div *ngIf="(competitions | async)?.length === 0" class="text-center py-16">
+        <div class="inline-flex items-center justify-center w-24 h-24 bg-slate-100 rounded-full mb-6">
+          <i class="pi pi-trophy text-slate-400 text-4xl"></i>
+        </div>
+        <h3 class="text-xl font-semibold text-slate-700 mb-2">No Competitions Found</h3>
+        <p class="text-slate-500 mb-6">Get started by creating your first fishing competition.</p>
+        <button (click)="visible = true"
+                class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-600 text-white font-medium rounded-xl hover:from-blue-600 hover:to-cyan-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+          <i class="pi pi-plus mr-2"></i>
+          Create Competition
+        </button>
+      </div>
+
+      <app-card-competition *ngFor="let competition of competitions | async" [competition]="competition"></app-card-competition>
+    </div>
+
+    <!-- Pagination -->
+    <div class="flex justify-center">
+      <div class="bg-white/70 backdrop-blur-sm rounded-2xl p-4 shadow-lg border border-white/20">
+        <app-pagination [pagination]="pagination"></app-pagination>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Add Button -->
+  <button (click)="visible = !visible"
+          class="fixed bottom-8 right-8 w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-600 text-white rounded-full shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-300 z-50 group">
+    <i class="pi pi-plus text-xl group-hover:rotate-90 transition-transform duration-300"></i>
+    <div class="absolute -top-12 right-0 bg-slate-800 text-white px-3 py-1 rounded-lg text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+      Add Competition
+    </div>
+  </button>
+
+  <!-- Competition Form Modal -->
+  <app-competition-form [visible]="visible"></app-competition-form>
+</div>
+
+<!-- Custom Animations -->
+<style>
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-10px) rotate(120deg); }
+  66% { transform: translateY(5px) rotate(240deg); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.shadow-3xl {
+  box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
+}
+</style>

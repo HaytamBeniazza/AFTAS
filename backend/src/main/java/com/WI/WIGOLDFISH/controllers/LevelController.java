@@ -20,7 +20,6 @@ public class LevelController {
     private final LevelService levelServiceImpl;
 
     @PostMapping
-    @PreAuthorize("hasAnyAuthority('ROLE_MANAGER', 'ROLE_JURY')")
     public ResponseEntity<?> createLevel(@Valid @RequestBody LevelDtoReq levelDtoReq) {
         levelDtoReq = levelServiceImpl.save(levelDtoReq);
         Map<String, Object> response = new HashMap<>();
@@ -30,7 +29,6 @@ public class LevelController {
     }
 
     @GetMapping
-    @PreAuthorize("hasAnyAuthority('ROLE_MANAGER', 'ROLE_JURY','ROLE_ADHERENT')")
     public ResponseEntity<?> getLevels() {
         return ResponseEntity.ok(levelServiceImpl.findAll());
     }

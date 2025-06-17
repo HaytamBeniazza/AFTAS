@@ -1,0 +1,66 @@
+::ng-deep .custom-dialog .p-dialog {
+  border-radius: 1rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border: none;
+}
+
+::ng-deep .custom-dialog .p-dialog-header {
+  background: linear-gradient(135deg, #06b5d4 0%, #0891b2 100%);
+  color: white;
+  border-radius: 1rem 1rem 0 0;
+  padding: 1.5rem;
+  border-bottom: none;
+}
+
+::ng-deep .custom-dialog .p-dialog-title {
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+::ng-deep .custom-dialog .p-dialog-header-close {
+  color: white;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+}
+
+::ng-deep .custom-dialog .p-dialog-header-close:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+::ng-deep .custom-dialog .p-dialog-content {
+  padding: 0;
+  background: white;
+  border-radius: 0 0 1rem 1rem;
+}
+
+/* Animation for dialog entrance */
+::ng-deep .custom-dialog .p-dialog {
+  animation: slideInDown 0.3s ease-out;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  ::ng-deep .custom-dialog .p-dialog {
+    margin: 1rem;
+    width: calc(100vw - 2rem) !important;
+    max-width: none !important;
+  }
+
+  ::ng-deep .custom-dialog .p-dialog-header {
+    padding: 1rem;
+  }
+}

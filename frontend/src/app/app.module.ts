@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+import { ComponentsFormsModule } from './components/forms/forms.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -38,6 +40,9 @@ import { RegisterFormComponent } from './components/register-form/register-form.
 import { AuthInterceptor } from './services/AuthInterceptor';
 import { ManageMemberPageComponent } from './pages/manage-member-page/manage-member-page.component';
 import { ErrorPageComponent } from './component/error-page/error-page.component';
+import { PendingApprovalComponent } from './components/pending-approval/pending-approval.component';
+import { OceanFloorComponent } from './components/ocean-floor/ocean-floor.component';
+import { FishListComponent } from './components/fish-list/fish-list.component';
 
 
 @NgModule({
@@ -63,9 +68,13 @@ import { ErrorPageComponent } from './component/error-page/error-page.component'
     RegisterFormComponent,
     ManageMemberPageComponent,
     ErrorPageComponent,
+    PendingApprovalComponent,
+    OceanFloorComponent,
+    FishListComponent,
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     MultiSelectModule,
     BrowserAnimationsModule,
@@ -80,7 +89,8 @@ import { ErrorPageComponent } from './component/error-page/error-page.component'
     DialogModule,
     InputTextModule,
     CheckboxModule,
-    RadioButtonModule
+    RadioButtonModule,
+    ComponentsFormsModule
   ],
   providers: [
     {

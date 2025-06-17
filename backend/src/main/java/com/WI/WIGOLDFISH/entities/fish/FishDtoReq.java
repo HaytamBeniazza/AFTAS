@@ -13,6 +13,7 @@ public class FishDtoReq {
       private  String  name;
         @NotNull
       private double averageWeight;
+      private String imageUrl;
         @NotNull
       private Long level_id;
 }

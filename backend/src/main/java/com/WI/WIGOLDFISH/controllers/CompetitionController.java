@@ -20,7 +20,7 @@ import java.util.Map;
 public class CompetitionController {
     private final CompetitionService competitionServiceImpl;
     @PostMapping
-    @PreAuthorize("hasAnyAuthority('ROLE_MANAGER', 'ROLE_JURY')")
+    // @PreAuthorize("hasAnyAuthority('ROLE_MANAGER', 'ROLE_JURY')")
     public ResponseEntity<?> createCompetition(@Valid @RequestBody CompetitionDtoReq competitionDtoReq) {
        competitionDtoReq = competitionServiceImpl.save(competitionDtoReq);
         Map<String, Object> response = new HashMap<>();
@@ -30,7 +30,7 @@ public class CompetitionController {
     }
 
     @GetMapping
-    @PreAuthorize("hasAnyAuthority('ROLE_MANAGER', 'ROLE_JURY','ROLE_ADHERENT')")
+    // @PreAuthorize("hasAnyAuthority('ROLE_MANAGER', 'ROLE_JURY','ROLE_ADHERENT')")
     public ResponseEntity<?> getCompetitions(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "all") String filter){
         Pageable pageable = PageRequest.of(page, size);
         FilterCompetition  filterCompetition = FilterCompetition.valueOf(filter.toUpperCase());
@@ -38,13 +38,13 @@ public class CompetitionController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('ROLE_MANAGER', 'ROLE_JURY','ROLE_ADHERENT')")
+    // @PreAuthorize("hasAnyAuthority('ROLE_MANAGER', 'ROLE_JURY','ROLE_ADHERENT')")
     public ResponseEntity<?> getCompetition(@PathVariable String id) {
         return ResponseEntity.ok(competitionServiceImpl.findOne(id));
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('ROLE_MANAGER', 'ROLE_JURY')")
+    // @PreAuthorize("hasAnyAuthority('ROLE_MANAGER', 'ROLE_JURY')")
     public ResponseEntity<?> updateCompetition(@PathVariable String id, @Valid @RequestBody CompetitionDtoReq competitionDtoReq) {
         competitionDtoReq = competitionServiceImpl.update(competitionDtoReq, id);
         Map<String, Object> response = new HashMap<>();
@@ -54,7 +54,7 @@ public class CompetitionController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('ROLE_MANAGER', 'ROLE_JURY')")
+    // @PreAuthorize("hasAnyAuthority('ROLE_MANAGER', 'ROLE_JURY')")
     public ResponseEntity<?> deleteCompetition(@PathVariable String id) {
         competitionServiceImpl.delete(id);
         Map<String, Object> response = new HashMap<>();

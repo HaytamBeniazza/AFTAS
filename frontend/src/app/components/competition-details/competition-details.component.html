@@ -1,11 +1,122 @@
-<div class="flex flex-wrap">
-    <app-member-card *ngFor="let ranking of competition.ranking"
-        [class.pointer-events-none]="leftTimeText.includes('to start')" (click)="setMember(ranking.member)"
-        [ranking]="ranking"></app-member-card>
-    <div (click)="openAddMember=!openAddMember"
-        *ngIf="canAddMember && authservice.authenticatedUser.value.role!='ADHERENT'"
-        class="bg-teal-500 rounded p-2 flex flex-col w-28 h-28 justify-center m-3 hover:bg-teal-400 cursor-pointer">
-        <span class="pi text-3xl flex justify-center align-middle pi-plus"></span>
+<!-- Competition Details Container -->
+<div class="bg-gradient-to-br from-slate-50 to-blue-50 p-6 rounded-xl min-h-[400px]">
+
+  <!-- Competition Info Header -->
+  <div class="mb-6">
+    <div class="flex items-center justify-between mb-4">
+      <h3 class="text-2xl font-bold text-slate-800">{{competition.code}}</h3>
+      <div class="flex items-center space-x-2">
+        <span class="px-3 py-1 rounded-full text-sm font-medium"
+              [class.bg-emerald-100]="leftTimeText.includes('to end')"
+              [class.text-emerald-700]="leftTimeText.includes('to end')"
+              [class.bg-amber-100]="leftTimeText.includes('to start')"
+              [class.text-amber-700]="leftTimeText.includes('to start')"
+              [class.bg-slate-100]="leftTimeText=='Finished'"
+              [class.text-slate-600]="leftTimeText=='Finished'">
+          {{leftTimeText}}
+        </span>
+      </div>
     </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-slate-600">
+      <div class="flex items-center">
+        <i class="pi pi-map-marker text-blue-500 mr-2"></i>
+        <span>{{competition.location}}</span>
+      </div>
+      <div class="flex items-center">
+        <i class="pi pi-users text-blue-500 mr-2"></i>
+        <span>{{competition.numberOfParticipants}} Max Participants</span>
+      </div>
+      <div class="flex items-center">
+        <i class="pi pi-dollar text-blue-500 mr-2"></i>
+        <span>${{competition.amount}} Entry Fee</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Participants Section -->
+  <div class="mb-6">
+    <div class="flex items-center justify-between mb-4">
+      <h4 class="text-lg font-semibold text-slate-800 flex items-center">
+        <i class="pi pi-users mr-2 text-blue-600"></i>
+        Participants ({{competition.ranking?.length || 0}}/{{competition.numberOfParticipants}})
+      </h4>
+
+      <!-- Add Member Button -->
+      <button *ngIf="canAddMember && authservice.authenticatedUser.value.role!='ADHERENT'"
+              (click)="openAddMember=!openAddMember"
+              class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-600 text-white font-medium rounded-xl hover:from-blue-600 hover:to-cyan-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105">
+        <i class="pi pi-plus mr-2"></i>
+        Add Participant
+      </button>
+    </div>
+
+    <!-- Participants Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+      <!-- Member Cards -->
+      <div *ngFor="let ranking of competition.ranking"
+           class="bg-white/70 backdrop-blur-sm rounded-xl p-4 shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer group"
+           [class.pointer-events-none]="leftTimeText.includes('to start')"
+           (click)="setMember(ranking.member)">
+
+        <div class="text-center">
+          <!-- Member Avatar -->
+          <div class="w-12 h-12 bg-gradient-to-br from-slate-400 to-slate-600 rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-3 group-hover:scale-110 transition-transform">
+            {{ranking.member?.name?.charAt(0)}}{{ranking.member?.familyName?.charAt(0)}}
+          </div>
+
+          <!-- Member Info -->
+          <div class="space-y-1">
+            <h5 class="font-semibold text-slate-800 text-sm truncate">
+              {{ranking.member?.name}} {{ranking.member?.familyName}}
+            </h5>
+            <div class="text-xs text-slate-500">
+              @{{ranking.member?.username}}
+            </div>
+            <div class="flex items-center justify-center space-x-2 mt-2">
+              <span class="text-xs text-slate-600">Score:</span>
+              <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">
+                {{ranking.score || 0}}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Empty State -->
+      <div *ngIf="!competition.ranking || competition.ranking.length === 0"
+           class="col-span-full text-center py-12">
+        <div class="inline-flex items-center justify-center w-16 h-16 bg-slate-100 rounded-full mb-4">
+          <i class="pi pi-users text-slate-400 text-2xl"></i>
+        </div>
+        <h5 class="text-lg font-semibold text-slate-700 mb-2">No Participants Yet</h5>
+        <p class="text-slate-500 mb-4">This competition doesn't have any participants registered.</p>
+        <button *ngIf="canAddMember && authservice.authenticatedUser.value.role!='ADHERENT'"
+                (click)="openAddMember=!openAddMember"
+                class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-600 text-white font-medium rounded-xl hover:from-blue-600 hover:to-cyan-700 transition-all duration-200 shadow-lg hover:shadow-xl">
+          <i class="pi pi-plus mr-2"></i>
+          Add First Participant
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Competition Stats -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+    <div class="bg-white/70 backdrop-blur-sm rounded-xl p-4 text-center">
+      <div class="text-2xl font-bold text-blue-600">{{competition.ranking?.length || 0}}</div>
+      <div class="text-sm text-slate-600">Registered</div>
+    </div>
+    <div class="bg-white/70 backdrop-blur-sm rounded-xl p-4 text-center">
+      <div class="text-2xl font-bold text-emerald-600">{{competition.numberOfParticipants - (competition.ranking?.length || 0)}}</div>
+      <div class="text-sm text-slate-600">Available Spots</div>
+    </div>
+    <div class="bg-white/70 backdrop-blur-sm rounded-xl p-4 text-center">
+      <div class="text-2xl font-bold text-amber-600">${{competition.amount * (competition.ranking?.length || 0)}}</div>
+      <div class="text-sm text-slate-600">Total Fees</div>
+    </div>
+  </div>
 </div>
+
+<!-- Add Member Modal -->
 <app-add-member [visible]="openAddMember" [competition]="competition"></app-add-member>

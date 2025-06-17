@@ -3,7 +3,9 @@ package com.WI.WIGOLDFISH.services.impl;
 import com.WI.WIGOLDFISH.entities.member.DBUser;
 import com.WI.WIGOLDFISH.entities.member.MemberDtoReq;
 import com.WI.WIGOLDFISH.entities.member.MemberDtoRes;
+import com.WI.WIGOLDFISH.enums.Role;
 import com.WI.WIGOLDFISH.exceptions.ResourceNotFound;
+import com.WI.WIGOLDFISH.repositories.DBUserRepository;
 import com.WI.WIGOLDFISH.repositories.MemberRepository;
 import com.WI.WIGOLDFISH.services.interfaces.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +19,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
+    private final DBUserRepository userRepository;
     private final ModelMapper modelMapper;
 
     @Override
@@ -54,5 +57,20 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public List<MemberDtoRes> findAll() {
         return memberRepository.findAll().stream().map(member -> modelMapper.map(member, MemberDtoRes.class)).toList();
+    }
+
+    @Override
+    public List<MemberDtoRes> findPendingMembers() {
+        List<DBUser> pendingUsers = userRepository.findAllByRole(Role.NONE);
+        return pendingUsers.stream()
+                .map(user -> modelMapper.map(user, MemberDtoRes.class))
+                .toList();
+    }
+
+    @Override
+    public void approveMember(UUID id, Role role) {
+        DBUser user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFound("Member not found"));
+        user.setRole(role);
+        userRepository.save(user);
     }
 }

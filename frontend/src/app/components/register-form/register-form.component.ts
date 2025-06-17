@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -11,44 +11,74 @@ import { AuthService } from 'src/app/services/auth.service';
 export class RegisterFormComponent {
   visible: boolean = true;
   showPassword: boolean = false;
+  isLoading: boolean = false;
 
   showDialog() {
     this.visible = true;
   }
 
-  // Keep both loginForm and signupForm for compatibility
-  loginForm: FormGroup;
+  // Registration form matching backend RegisterRequest
   signupForm: FormGroup;
 
   constructor(private fb: FormBuilder, private AuthService: AuthService, private router: Router) {
-    this.loginForm = this.fb.group({
-      username: [''],
-      name: [''],
-      familyName: [''],
-      password: [''],
-      nationality: ['Morocco'],
-      accessionDate: [''],
-      indentityNumber: [''],
-      indentityDocumentType: ['CIN'],
-      agreeToTerms: [false]
+    this.signupForm = this.fb.group({
+      username: ['', [Validators.required, Validators.minLength(3)]],
+      familyName: ['', [Validators.required, Validators.minLength(2)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      accessionDate: ['', Validators.required],
+      nationality: ['', Validators.required],
+      indentityNumber: ['', [Validators.required, Validators.minLength(5)]],
+      indentityDocumentType: ['CIN', Validators.required],
+      agreeToTerms: [false, Validators.requiredTrue] // Frontend validation only
     });
-
-    // signupForm points to the same form for compatibility
-    this.signupForm = this.loginForm;
   }
 
   onSubmit() {
-    this.AuthService.register(this.loginForm);
+    if (this.signupForm.valid && !this.isLoading) {
+      this.isLoading = true;
+
+      // Prepare data for backend (exclude agreeToTerms)
+      const registerData = {
+        username: this.signupForm.value.username,
+        familyName: this.signupForm.value.familyName,
+        password: this.signupForm.value.password,
+        accessionDate: this.signupForm.value.accessionDate,
+        nationality: this.signupForm.value.nationality,
+        indentityNumber: this.signupForm.value.indentityNumber,
+        indentityDocumentType: this.signupForm.value.indentityDocumentType
+      };
+
+      // Create a temporary form group for the backend call
+      const backendForm = this.fb.group(registerData);
+
+      // Use the new auth service with proper error handling
+      this.AuthService.register(backendForm).subscribe({
+        next: (response) => {
+          // Success is handled in the auth service
+          this.isLoading = false;
+          // Form will be reset and user redirected by auth service
+        },
+        error: (error) => {
+          // Error is handled in the auth service with proper messages
+          this.isLoading = false;
+          // Keep form data so user can correct errors
+        }
+      });
+    } else {
+      // Mark all fields as touched to show validation errors
+      Object.keys(this.signupForm.controls).forEach(key => {
+        this.signupForm.get(key)?.markAsTouched();
+      });
+    }
   }
 
   switchToLogin(): void {
-    // Switch to login form
     this.router.navigate(['/login']);
   }
 
   // Password strength calculation
   getPasswordStrength(): number {
-    const password = this.loginForm.get('password')?.value || '';
+    const password = this.signupForm.get('password')?.value || '';
     let strength = 0;
 
     if (password.length >= 8) strength += 1;

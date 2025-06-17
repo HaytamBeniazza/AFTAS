@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {Competition } from 'src/app/model/Competition';
 import {Member} from 'src/app/model/Member';
@@ -14,7 +14,7 @@ import { IndentityDocumentType } from 'src/app/enum/IndentityDocumentType';
   templateUrl: './add-member.component.html',
   styleUrls: ['./add-member.component.css']
 })
-export class AddMemberComponent {
+export class AddMemberComponent implements OnInit {
   @Input() visible: boolean = false;
   members: Member[] = [];
   showDialog() {
@@ -24,7 +24,13 @@ export class AddMemberComponent {
   @Input() selectedMembers: Member[] = [];
   @Input() ranking: Ranking = {} as Ranking;
   memberForm: FormGroup;
-  constructor(private memberService: MemberService, private rankingService: RankingService, private competitionService: CompetitionService, private alertService: AlertService) {
+  constructor(
+    private memberService: MemberService,
+    private rankingService: RankingService,
+    private competitionService: CompetitionService,
+    private alertService: AlertService,
+    private cdr: ChangeDetectorRef
+  ) {
     this.memberForm = new FormBuilder().group({
       name: ['', Validators.required],
       familyName: ['', Validators.required],
@@ -34,10 +40,14 @@ export class AddMemberComponent {
       indentityNumber: ['', Validators.required],
     });
   }
-  ngAfterViewInit() {
+  ngOnInit() {
+    // Initialize with current value to avoid initial empty array
+    this.members = this.memberService.members.getValue();
+
     this.memberService.members.subscribe(
       (members) => {
         this.members = members;
+        this.cdr.detectChanges();
       }
     );
   }

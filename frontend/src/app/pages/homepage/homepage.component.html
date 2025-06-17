@@ -1,39 +1,99 @@
 <!-- AFTAS - Immersive Ocean Experience Homepage -->
 <div class="min-h-screen bg-gradient-to-b from-[#06b5d4]/8 via-[#06b5d4]/12 to-[#06b5d4]/16 relative overflow-hidden">
 
-  <!-- Unified Ocean Current Background -->
-  <div class="fixed inset-0 z-0 pointer-events-none">
-    <!-- Global Ocean Current -->
-    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-[#06b5d4]/4 to-transparent animate-ocean-current-unified"></div>
+  <!-- Ocean Background with Floating Sea Life -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <!-- Global Ocean Current Background -->
+    <div class="absolute inset-0 bg-gradient-to-r from-[#06b5d4]/3 via-transparent to-[#06b5d4]/3 animate-ocean-current-unified"></div>
 
-    <!-- Swimming Catfish -->
-    <div class="absolute top-32 left-16 animate-fish-swim-slow opacity-25">
-      <img src="assets/images/catfish.png" alt="Swimming Catfish" class="w-20 h-16 transform rotate-12">
+    <!-- NEW SWIMMING FISH ECOSYSTEM -->
+    <!-- Surface Level Fish - Left to Right -->
+    <div class="absolute left-0 animate-fish-swim-left-to-right-slow fish-delay-1 fish-depth-surface" style="top: 15vh;">
+      <img src="assets/images/fish-left-toright.png" alt="Swimming Fish" class="fish-large" style="opacity: 0.15;">
     </div>
 
-    <!-- Floating Speckled Fish -->
-    <div class="absolute top-64 right-24 animate-fish-float-gentle opacity-30">
-      <img src="assets/images/speckled-fish.png" alt="Speckled Fish" class="w-16 h-12 transform -rotate-6">
+    <div class="absolute left-0 animate-fish-swim-left-to-right-medium fish-delay-3 fish-depth-surface" style="top: 25vh;">
+      <img src="assets/images/fish2-left-to-right.png" alt="Swimming Fish" class="fish-medium" style="opacity: 0.15;">
     </div>
 
-    <!-- Drifting Crab -->
-    <div class="absolute bottom-40 left-32 animate-crab-drift opacity-20">
-      <img src="assets/images/crab.png" alt="Ocean Crab" class="w-14 h-14 transform rotate-45">
+    <div class="absolute left-0 animate-fish-swim-left-to-right-fast fish-delay-5 fish-depth-surface" style="top: 35vh;">
+      <img src="assets/images/fish-left-toright.png" alt="Swimming Fish" class="fish-small" style="opacity: 0.15;">
     </div>
 
-    <!-- Swimming Squid -->
-    <div class="absolute top-96 right-16 animate-squid-glide opacity-25">
-      <img src="assets/images/squid.png" alt="Ocean Squid" class="w-12 h-18 transform -rotate-12">
+    <!-- Mid-Level Fish - Right to Left -->
+    <div class="absolute right-0 animate-fish-swim-right-to-left-slow fish-delay-2 fish-depth-mid" style="top: 20vh;">
+      <img src="assets/images/fish-right-to-left.png" alt="Swimming Fish" class="fish-extra-large" style="opacity: 0.12;">
     </div>
+
+    <div class="absolute right-0 animate-fish-swim-right-to-left-medium fish-delay-4 fish-depth-mid" style="top: 40vh;">
+      <img src="assets/images/fish-2-right-to-left.png" alt="Swimming Fish" class="fish-large" style="opacity: 0.12;">
+    </div>
+
+    <!-- Deep Level Fish - Left to Right (Slower) -->
+    <div class="absolute left-0 animate-fish-swim-left-to-right-slow fish-delay-6 fish-depth-deep" style="top: 50vh;">
+      <img src="assets/images/fish2-left-to-right.png" alt="Deep Swimming Fish" class="fish-medium" style="opacity: 0.10;">
+    </div>
+
+    <div class="absolute left-0 animate-fish-swim-left-to-right-medium fish-delay-8 fish-depth-deep" style="top: 60vh;">
+      <img src="assets/images/fish-left-toright.png" alt="Deep Swimming Fish" class="fish-small" style="opacity: 0.10;">
+    </div>
+
+    <!-- Abyss Level Fish - Right to Left (Very Slow) -->
+    <div class="absolute right-0 animate-fish-swim-right-to-left-slow fish-delay-7 fish-depth-abyss" style="top: 70vh;">
+      <img src="assets/images/fish-3-right-to-left.png" alt="Abyss Fish" class="fish-large" style="opacity: 0.08;">
+    </div>
+
+    <!-- School Swimming Pattern -->
+    <div class="absolute left-0 animate-fish-school-swim fish-delay-1 fish-depth-mid" style="top: 45vh;">
+      <div class="flex space-x-4">
+        <img src="assets/images/fish2-left-to-right.png" alt="School Fish" class="fish-small" style="opacity: 0.12;">
+        <img src="assets/images/fish2-left-to-right.png" alt="School Fish" class="fish-small" style="animation-delay: 0.2s; opacity: 0.12;">
+        <img src="assets/images/fish2-left-to-right.png" alt="School Fish" class="fish-small" style="animation-delay: 0.4s; opacity: 0.12;">
+      </div>
+    </div>
+
+    <!-- Additional Swimming Layers for Depth -->
+    <!-- Mid-Ocean Swimming -->
+    <div class="absolute left-0 animate-fish-swim-left-to-right-medium fish-delay-2 fish-depth-mid" style="top: 55vh;">
+      <img src="assets/images/fish-left-toright.png" alt="Mid Ocean Fish" class="fish-medium" style="opacity: 0.12;">
+    </div>
+
+    <div class="absolute right-0 animate-fish-swim-right-to-left-slow fish-delay-4 fish-depth-deep" style="top: 65vh;">
+      <img src="assets/images/fish-right-to-left.png" alt="Deep Ocean Fish" class="fish-large" style="opacity: 0.10;">
+    </div>
+
+    <!-- Surface Swimmers (Higher Speed) -->
+    <div class="absolute left-0 animate-fish-swim-left-to-right-fast fish-delay-3 fish-depth-surface" style="top: 30vh;">
+      <img src="assets/images/fish2-left-to-right.png" alt="Fast Surface Fish" class="fish-small" style="opacity: 0.15;">
+    </div>
+
+    <div class="absolute right-0 animate-fish-swim-right-to-left-medium fish-delay-5 fish-depth-surface" style="top: 10vh;">
+      <img src="assets/images/fish-2-right-to-left.png" alt="Surface Fish" class="fish-medium" style="opacity: 0.15;">
+    </div>
+
+    <!-- Deep Abyss Swimmers -->
+    <div class="absolute left-0 animate-fish-swim-left-to-right-slow fish-delay-6 fish-depth-abyss" style="top: 75vh;">
+      <img src="assets/images/fish-left-toright.png" alt="Abyss Fish" class="fish-extra-large" style="opacity: 0.08;">
+    </div>
+
+    <div class="absolute right-0 animate-fish-swim-right-to-left-slow fish-delay-8 fish-depth-abyss" style="top: 80vh;">
+      <img src="assets/images/fish-3-right-to-left.png" alt="Deep Abyss Fish" class="fish-medium" style="opacity: 0.08;">
+    </div>
+
+    <!-- Vertical Swimming Fish -->
+    <div class="absolute left-1/4 animate-fish-swim-deep-vertical fish-delay-7 fish-depth-mid" style="bottom: 10vh;">
+      <img src="assets/images/fish-left-toright.png" alt="Vertical Swimming Fish" class="fish-large transform rotate-90" style="opacity: 0.12;">
+    </div>
+    <!-- END NEW SWIMMING FISH ECOSYSTEM -->
 
     <!-- Animated Jellyfish -->
-    <div class="absolute top-20 left-10 animate-jellyfish-float opacity-30">
+    <div class="absolute top-20 left-10 animate-jellyfish-float" style="opacity: 0.08;">
       <div class="w-16 h-20 bg-gradient-to-b from-purple-200/60 to-transparent rounded-full animate-pulse"></div>
       <div class="w-1 h-12 bg-purple-300/40 mx-auto animate-tentacle-sway"></div>
     </div>
 
     <!-- Swimming Fish School -->
-    <div class="absolute top-40 right-20 animate-fish-school opacity-40">
+    <div class="absolute top-40 right-20 animate-fish-school" style="opacity: 0.08;">
       <div class="flex space-x-2">
         <div class="w-3 h-2 bg-[#06b5d4]/60 rounded-full animate-fish-swim"></div>
         <div class="w-3 h-2 bg-[#06b5d4]/60 rounded-full animate-fish-swim" style="animation-delay: 0.2s;"></div>
@@ -47,11 +107,6 @@
     </div>
     <div class="absolute bottom-0 right-1/3 animate-seaweed-sway opacity-25" style="animation-delay: 1s;">
       <div class="w-3 h-40 bg-gradient-to-t from-emerald-500/60 to-emerald-200/40 rounded-t-full"></div>
-    </div>
-
-    <!-- Additional Swimming Fish -->
-    <div class="absolute bottom-64 right-40 animate-fish-swim-reverse opacity-20">
-      <img src="assets/images/catfish.png" alt="Swimming Fish" class="w-16 h-12 transform scale-x-[-1] rotate-6">
     </div>
   </div>
 
@@ -116,7 +171,7 @@
 
           <!-- Swimming Fish Decoration -->
           <div class="absolute top-4 right-4 animate-fish-swim-welcome">
-            <img src="assets/images/speckled-fish.png" alt="Welcome Fish" class="w-12 h-12 opacity-30">
+            <img src="assets/images/speckled-fish.png" alt="Welcome Fish" class="w-12 h-12" style="opacity: 0.08;">
           </div>
 
           <div class="relative z-10">
@@ -357,24 +412,8 @@
     </div>
   </section>
 
-  <!-- Ocean Floor Footer Transition -->
-  <div class="h-32 bg-gradient-to-b from-[#06b5d4]/22 to-[#06b5d4]/30 relative overflow-hidden">
-    <!-- Animated Ocean Waves -->
-    <div class="absolute inset-0">
-      <svg class="absolute bottom-0 w-full h-16 animate-wave-flow" viewBox="0 0 1200 120" preserveAspectRatio="none">
-        <path d="M0,60 C300,120 900,0 1200,60 L1200,120 L0,120 Z" fill="rgba(6, 181, 212, 0.1)"></path>
-      </svg>
-      <svg class="absolute bottom-0 w-full h-20 animate-wave-flow-reverse" viewBox="0 0 1200 120" preserveAspectRatio="none" style="animation-delay: -2s;">
-        <path d="M0,80 C400,20 800,100 1200,40 L1200,120 L0,120 Z" fill="rgba(6, 181, 212, 0.15)"></path>
-      </svg>
-    </div>
-
-    <!-- Floating Ocean Debris -->
-    <div class="absolute bottom-8 left-20 animate-debris-float opacity-20">
-      <div class="w-3 h-3 bg-amber-400/60 rounded-full"></div>
-    </div>
-    <div class="absolute bottom-12 right-32 animate-debris-float opacity-15" style="animation-delay: 3s;">
-      <div class="w-2 h-2 bg-emerald-400/60 rounded-full"></div>
-    </div>
-  </div>
+  <!-- 🌊 OCEAN FLOOR FOOTER 🌊 -->
+  <app-ocean-floor></app-ocean-floor>
 </div>
+
+
